@@ -19,7 +19,7 @@ var constraints = { video: { width: 1280, height: 720, facingMode: 'user', frame
 var ids = [];
 var recording = false;
 var counting = false;
-var running = true;
+var running = false;
 var startTime = Math.floor(Date.now()/100);
 var prevTime = Math.floor(Date.now()/100);
 var data = {};
@@ -151,14 +151,6 @@ function joint_clicked(btn, id)
     ids = ids.filter(function(e) { return e[1] !== id[1] });
   }
 }
-function changeCamera()
-{
-  if( constraints['video']['facingMode'] == 'user' )
-    constraints['video']['facingMode'] = 'environment';
-  else 
-    constraints['video']['facingMode'] = 'user';
-  start(constraints);
-}
 
 const pose = new Pose({locateFile: (file) => {
   return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
@@ -179,9 +171,7 @@ async function start(constraints)
     navigator.mediaDevices.getUserMedia(constraints)
       .then(function (stream) {
         videoElement.srcObject = stream;
-        if(!running)
-          update();
-        running = true;
+        update();
       })
       .catch(function (err) {
         console.log(err);
