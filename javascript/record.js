@@ -154,7 +154,7 @@ function joint_clicked(btn, id)
 function changeCamera()
 {
   if( constraints['video']['facingMode'] == 'user' )
-    constraints['video']['facingMode'] = { exact: 'environment' };
+    constraints['video']['facingMode'] = 'environment';
   else 
     constraints['video']['facingMode'] = 'user';
   start(constraints);
