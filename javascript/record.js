@@ -1,0 +1,196 @@
+document.getElementById("right_hip").addEventListener('click', function() { joint_clicked(document.getElementById("right_hip"),[12,24,26]); }, false);
+document.getElementById("left_hip").addEventListener('click', function() { joint_clicked(document.getElementById("left_hip"),[11,23,25]); }, false);
+document.getElementById("right_shoulder").addEventListener('click', function() { joint_clicked(document.getElementById("right_shoulder"),[14,12,24]); }, false);
+document.getElementById("left_shoulder").addEventListener('click', function() { joint_clicked(document.getElementById("left_shoulder"),[13,11,23]); }, false);
+document.getElementById("right_forearm").addEventListener('click', function() { joint_clicked(document.getElementById("right_forearm"),[12,14,16]); }, false);
+document.getElementById("left_forearm").addEventListener('click', function() { joint_clicked(document.getElementById("left_forearm"),[11,13,15]); }, false);
+document.getElementById("right_knee").addEventListener('click', function() { joint_clicked(document.getElementById("right_knee"),[24,26,28]); }, false);
+document.getElementById("left_knee").addEventListener('click', function() { joint_clicked(document.getElementById("left_knee"),[23,25,27]); }, false);
+
+const videoElement = document.getElementsByClassName('input_video')[0];
+const container = document.getElementsByClassName('container')[0];
+const canvasElement = document.getElementsByClassName('output_canvas')[0];
+const canvasCtx = canvasElement.getContext('2d');
+const recBtn = document.getElementById('recBtn');
+const delayBtn = document.getElementById('delay');
+const lengthBtn = document.getElementById('length');
+const exName = document.getElementById('exname');
+var constraints = { video: { width: 1280, height: 720, facingMode: 'user', frameRate: { max: 30} } };
+var ids = [];
+var recording = false;
+var counting = false;
+var startTime = Math.floor(Date.now()/100);
+var prevTime = Math.floor(Date.now()/100);
+var data = {};
+var startDelayTime = Date.now;
+var delayTime = '';
+
+window.addEventListener("resize", (e) => {
+  canvasElement.width = videoElement.offsetWidth;
+  canvasElement.height = videoElement.offsetHeight;
+}, false);
+
+function onResults(results) {
+  if (!results.poseLandmarks) {
+    return;
+  }
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+  curTime = Math.floor(Date.now()/100)-startTime;
+  showLandmarks = []
+  showConnections = []
+  landmarksPosition = {}
+  for(var a = 0; a < ids.length; a++)
+  {
+    var id = ids[a];
+    var x1 = results.poseLandmarks[id[0]].x, y1 = results.poseLandmarks[id[0]].y, z1 = results.poseLandmarks[id[0]].z;
+    var x2 = results.poseLandmarks[id[1]].x, y2 = results.poseLandmarks[id[1]].y, z2 = results.poseLandmarks[id[1]].z;
+    var x3 = results.poseLandmarks[id[2]].x, y3 = results.poseLandmarks[id[2]].y, z3 = results.poseLandmarks[id[2]].z;
+    var angle = (Math.atan2(y3-y2, x3-x2)-Math.atan2(y1-y2,x1-x2)) * (180/Math.PI);
+    if(angle < 0)
+      angle += 360;
+    if((id[1] in data) == false)
+      data[id[1]] = [];
+    if(curTime != prevTime)
+      data[id[1]].push([curTime*0.1,angle]);
+    //canvasCtx.fillText(angle.toString(), x2*canvasElement.clientWidth - 50, y2*canvasElement.clientHeight + 20);
+    for(var b = 0; b < 3; b++)
+    {
+      if(showLandmarks.includes(results.poseLandmarks[id[b]]) == false)
+      {
+        showLandmarks.push(results.poseLandmarks[id[b]]);
+        landmarksPosition[id[b]] = showLandmarks.length-1;
+      }
+    }
+    showConnections.push([landmarksPosition[id[0]],landmarksPosition[id[1]]]);
+    showConnections.push([landmarksPosition[id[1]],landmarksPosition[id[2]]]);
+  }
+  if(counting)
+  {
+    canvasCtx.font = '100px sans-serif';
+    delayTime = Math.round(delayBtn.value-(Date.now()-startDelayTime)/1000);
+    canvasCtx.fillStyle = "red";
+    canvasCtx.fillText(delayTime.toString(),canvasElement.width/2,canvasElement.height/2,100);
+  }
+  else if(recording)
+  {
+    canvasCtx.fillStyle = "lime";
+    canvasCtx.fillText((curTime/10).toString(),canvasElement.width/2-40,canvasElement.height/2,1000);
+  }
+  if(curTime >= parseFloat(lengthBtn.value)*10 && recording)
+    stopRec();
+  prevTime = startTime;
+  canvasCtx.globalCompositeOperation = 'source-over';
+  drawConnectors(canvasCtx, showLandmarks, showConnections,
+                 {color: '#00FF00', lineWidth: 4});
+  drawLandmarks(canvasCtx, showLandmarks,
+                {color: '#FF0000', lineWidth: 2});
+  canvasCtx.restore();
+}
+function recPress()
+{
+  if(!recording)
+  {
+    counting = true;
+    startDelayTime = Date.now();
+    setTimeout(function(){ startRec(); }, parseFloat(delayBtn.value)*1000);
+  }
+  else if(Math.floor(Date.now()/100)-startTime >= 10)
+    stopRec();
+}
+function startRec()
+{
+  counting = false;
+  recording = true;
+  recBtn.textContent = "Stop";
+  startTime = Math.floor(Date.now()/100);
+  prevTime = Math.floor(Date.now()/100);
+  data = {};
+}
+function stopRec()
+{
+  recBtn.textContent = "Record";
+  recording = false;
+}
+function addRec()
+{
+  var ex = [];
+  if(Object.keys.length == 0)
+    return;
+  if(exName.value == '')
+    return;
+  ex.push(exName.value);
+  for(var a = 0; a < ids.length; a++)
+  {
+    rec = data[ids[a][1]];
+    rec.sort(function(a, b) { return a[1] - b[1]; });
+    var maxDeg = rec[rec.length-1][1];
+    var minDeg = rec[0][1];
+    console.log(maxDeg-minDeg);
+    ex.push([ids[a][1], maxDeg-minDeg]);
+  }
+  if(localStorage.hasOwnProperty("exercises"))
+    var exercises = JSON.parse(localStorage.exercises);
+  else 
+    var exercises = [];
+  exercises.push(ex);
+  localStorage.exercises = JSON.stringify(exercises);
+}
+function joint_clicked(btn, id)
+{
+  if(btn.textContent == "+")
+  {
+    btn.style.background = "lime";
+    btn.textContent = "-";
+    ids.push(id);
+  }
+  else 
+  {
+    btn.style.background = "red";
+    btn.textContent = "+";
+    ids = ids.filter(function(e) { return e[1] !== id[1] });
+  }
+}
+function changeCamera()
+{
+  if( constraints['video']['facingMode'] == 'user' )
+    constraints['video']['facingMode'] = { exact: 'environment' };
+  else 
+    constraints['video']['facingMode'] = 'user';
+  if(videoElement.srcObject != null)
+    videoElement.srcObject.getTracks().forEach( function(track) { track.applyConstraints(constraints); });
+}
+
+const pose = new Pose({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+}});
+pose.setOptions({
+  modelComplexity: 1,
+  smoothLandmarks: true,
+  enableSegmentation: true,
+  smoothSegmentation: true,
+  minDetectionConfidence: 0.5,
+  minTrackingConfidence: 0.5
+});
+pose.onResults(onResults);
+
+async function start(constraints)
+{
+  if (navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then(function (stream) {
+        videoElement.srcObject = stream;
+        update();
+      })
+      .catch(function (err) {
+        console.log(err);
+    });
+  }
+}
+async function update() {
+  await pose.send({image: videoElement});
+  requestAnimationFrame(update);
+}
+start(constraints);
+
+canvasElement.width = videoElement.offsetWidth;
+canvasElement.height = videoElement.offsetHeight;
