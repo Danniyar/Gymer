@@ -19,6 +19,7 @@ var constraints = { video: { width: 1280, height: 720, facingMode: 'user', frame
 var ids = [];
 var recording = false;
 var counting = false;
+var running = true;
 var startTime = Math.floor(Date.now()/100);
 var prevTime = Math.floor(Date.now()/100);
 var data = {};
@@ -156,8 +157,7 @@ function changeCamera()
     constraints['video']['facingMode'] = { exact: 'environment' };
   else 
     constraints['video']['facingMode'] = 'user';
-  if(videoElement.srcObject != null)
-    videoElement.srcObject.getTracks().forEach( function(track) { track.applyConstraints(constraints); });
+  start(constraints);
 }
 
 const pose = new Pose({locateFile: (file) => {
@@ -179,7 +179,9 @@ async function start(constraints)
     navigator.mediaDevices.getUserMedia(constraints)
       .then(function (stream) {
         videoElement.srcObject = stream;
-        update();
+        if(!running)
+          update();
+        running = true;
       })
       .catch(function (err) {
         console.log(err);
