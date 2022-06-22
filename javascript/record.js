@@ -16,6 +16,8 @@ const recBtn = document.getElementById('recBtn');
 const delayBtn = document.getElementById('delay');
 const lengthBtn = document.getElementById('length');
 const exName = document.getElementById('exname');
+const datatoast = document.getElementById('datasnackbar');
+const nametoast = document.getElementById('namesnackbar');
 var constraints = { width: 1280, height: 720, frameRate: { min: 30} };
 var ids = [];
 var recording = false;
@@ -118,10 +120,18 @@ function stopRec()
 function addRec()
 {
   var ex = [];
-  if(Object.keys.length == 0)
+  if(Object.keys(data).length == 0)
+  {
+    datasnackbar.className = "show";
+    setTimeout(function(){ datasnackbar.className = datasnackbar.className.replace("show", ""); }, 3000);
     return;
+  }
   if(exName.value == '')
+  {
+    namesnackbar.className = "show";
+    setTimeout(function(){ namesnackbar.className = namesnackbar.className.replace("show", ""); }, 3000);
     return;
+  }
   ex.push(exName.value);
   for(var a = 0; a < ids.length; a++)
   {
@@ -138,6 +148,7 @@ function addRec()
     var exercises = [];
   exercises.push(ex);
   localStorage.exercises = JSON.stringify(exercises);
+  window.location.href = './exercises.html';
 }
 function joint_clicked(btn, id)
 {
