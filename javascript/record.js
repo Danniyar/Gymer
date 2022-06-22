@@ -26,7 +26,8 @@ var prevTime = Math.floor(Date.now()/100);
 var data = {};
 var startDelayTime = Date.now;
 var delayTime = '';
-var rafid;
+
+cameraOptions.addEventListener("change", function(){ cameraSelect(); } );
 
 window.addEventListener("resize", (e) => {
   canvasElement.width = videoElement.offsetWidth;
@@ -164,8 +165,7 @@ const getCameraSelection = async () => {
 function cameraSelect()
 {
   constraints = {...constraints, deviceId: { exact: cameraOptions.value } };
-  cancelAnimationFrame(rafid);
-  start();
+  start(constraints);
 }
 
 const pose = new Pose({locateFile: (file) => {
@@ -187,7 +187,7 @@ async function start(constraints)
     navigator.mediaDevices.getUserMedia(constraints)
       .then(function (stream) {
         videoElement.srcObject = stream;
-        rafid = requestAnimationFrame(update);
+        update();
       })
       .catch(function (err) {
         console.log(err);
@@ -195,8 +195,9 @@ async function start(constraints)
   }
 }
 async function update() {
-  await pose.send({image: videoElement});
-  rafid = requestAnimationFrame(update);
+  if(videoElement.readyState >= 3)
+    await pose.send({image: videoElement});
+  requestAnimationFrame(update);
 }
 getCameraSelection();
 start(constraints);
