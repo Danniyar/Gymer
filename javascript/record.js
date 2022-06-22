@@ -161,11 +161,11 @@ const getCameraSelection = async () => {
     return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
   });
   cameraOptions.innerHTML = options.join('');
-  constraints = {...constraints, deviceId: { exact: cameraOptions.value } };
+  constraints['deviceId'] = { exact: cameraOptions.value };
 };
 function cameraSelect()
 {
-  constraints = {...constraints, deviceId: { exact: cameraOptions.value } };
+  constraints['deviceId'] = { exact: cameraOptions.value };
   start(constraints);
 }
 
