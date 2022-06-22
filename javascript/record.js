@@ -8,6 +8,7 @@ document.getElementById("right_knee").addEventListener('click', function() { joi
 document.getElementById("left_knee").addEventListener('click', function() { joint_clicked(document.getElementById("left_knee"),[23,25,27]); }, false);
 
 const videoElement = document.getElementsByClassName('input_video')[0];
+const cameraOptions = document.querySelector('.video-options>select');
 const container = document.getElementsByClassName('container')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
 const canvasCtx = canvasElement.getContext('2d');
@@ -15,7 +16,7 @@ const recBtn = document.getElementById('recBtn');
 const delayBtn = document.getElementById('delay');
 const lengthBtn = document.getElementById('length');
 const exName = document.getElementById('exname');
-var constraints = { video: { width: 1280, height: 720, facingMode: 'user', frameRate: { max: 30} } };
+var constraints = { video: { width: 1280, height: 720, frameRate: { min: 30} } };
 var ids = [];
 var recording = false;
 var counting = false;
@@ -25,6 +26,7 @@ var prevTime = Math.floor(Date.now()/100);
 var data = {};
 var startDelayTime = Date.now;
 var delayTime = '';
+var rafid;
 
 window.addEventListener("resize", (e) => {
   canvasElement.width = videoElement.offsetWidth;
@@ -151,6 +153,20 @@ function joint_clicked(btn, id)
     ids = ids.filter(function(e) { return e[1] !== id[1] });
   }
 }
+const getCameraSelection = async () => {
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const videoDevices = devices.filter(device => device.kind === 'videoinput');
+  const options = videoDevices.map(videoDevice => {
+    return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
+  });
+  cameraOptions.innerHTML = options.join('');
+};
+function cameraSelect()
+{
+  constraints = {...constraints, deviceId: { exact: cameraOptions.value } };
+  cancelAnimationFrame(rafid);
+  start();
+}
 
 const pose = new Pose({locateFile: (file) => {
   return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
@@ -171,7 +187,7 @@ async function start(constraints)
     navigator.mediaDevices.getUserMedia(constraints)
       .then(function (stream) {
         videoElement.srcObject = stream;
-        update();
+        rafid = requestAnimationFrame(update);
       })
       .catch(function (err) {
         console.log(err);
@@ -180,8 +196,9 @@ async function start(constraints)
 }
 async function update() {
   await pose.send({image: videoElement});
-  requestAnimationFrame(update);
+  rafid = requestAnimationFrame(update);
 }
+getCameraSelection();
 start(constraints);
 
 canvasElement.width = videoElement.offsetWidth;
