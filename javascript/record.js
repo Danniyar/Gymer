@@ -16,7 +16,7 @@ const recBtn = document.getElementById('recBtn');
 const delayBtn = document.getElementById('delay');
 const lengthBtn = document.getElementById('length');
 const exName = document.getElementById('exname');
-var constraints = { video: { width: 1280, height: 720, frameRate: { min: 30} } };
+var constraints = { width: 1280, height: 720, frameRate: { min: 30} };
 var ids = [];
 var recording = false;
 var counting = false;
@@ -161,6 +161,7 @@ const getCameraSelection = async () => {
     return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
   });
   cameraOptions.innerHTML = options.join('');
+  constraints = {...constraints, deviceId: { exact: cameraOptions.value } };
 };
 function cameraSelect()
 {
@@ -184,7 +185,7 @@ pose.onResults(onResults);
 async function start(constraints)
 {
   if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia(constraints)
+    navigator.mediaDevices.getUserMedia({video: constraints})
       .then(function (stream) {
         videoElement.srcObject = stream;
         update();
