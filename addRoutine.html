@@ -7,19 +7,21 @@
     <title>Gymer</title>
 </head>
 <body>
-    <ul>
+    <ul id="exercs">
         <li>
             <input list="exercises" name="ex" id="ex">
             <label for="sets">Sets:</label>
             <input type="number" id="sets" name="sets" value="1" min="1" step="1" oninput="validity.valid||(value='');">
             <label for="sets">Reps:</label>
             <input type="number" id="reps" name="reps" value="1" min="1" step="1" oninput="validity.valid||(value='');">
+            <button id="deleteEx" onclick="deleteEx()">-</button>
         </li>
     </ul>
-    <button id="addEx" onclick="addRec()">+</button><br><br>
-    <button id="addBtn" onclick="addRec()">Add</button>
+    <button id="addEx" onclick="addEx()">+</button><br><br>
+    <button id="addBtn" onclick="addRot()">Add Routine</button>
     <datalist id="exercises">
         
     </datalist>
 </body>
 </html>
+<script src="./javascript/addRoutine.js" defer></script>
