@@ -10,3 +10,21 @@ routines.forEach(function(item){
     option.value = item[0];
     datalist.appendChild(option);
 });
+
+function saveRoutine(object)
+{
+    if(localStorage.hasOwnProperty("dailyRoutines"))
+        var dr = JSON.parse(localStorage.dailyRoutines);
+    else
+        var dr = {};
+    dr[object.name] = object.value;
+    localStorage.dailyRoutines = JSON.stringify(dr);
+}
+
+if(localStorage.hasOwnProperty("dailyRoutines"))
+{
+    var dr = JSON.parse(localStorage.dailyRoutines);
+    for(const [key, value] of Object.entries(dr)) {
+        document.getElementById(key).value = value;
+    }
+}
