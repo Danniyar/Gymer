@@ -4,7 +4,6 @@ var exercises = JSON.parse(localStorage.exercises);
 
 for(var a = 0; a < exercises.length; a++)
 {
-    console.log(a);
     var li = document.createElement("li");
     var delBtn = document.createElement("button");
     var index = a;

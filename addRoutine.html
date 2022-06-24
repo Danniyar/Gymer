@@ -5,23 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gymer</title>
+    <link href="./css/addRoutine.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <ul id="exercs">
-        <li>
-            <input list="exercises" name="ex" id="ex">
-            <label for="sets">Sets:</label>
-            <input type="number" id="sets" name="sets" value="1" min="1" step="1" oninput="validity.valid||(value='');">
-            <label for="sets">Reps:</label>
-            <input type="number" id="reps" name="reps" value="1" min="1" step="1" oninput="validity.valid||(value='');">
-            <button id="deleteEx" onclick="deleteEx()">-</button>
-        </li>
+        
     </ul>
     <button id="addEx" onclick="addEx()">+</button><br><br>
+    <label for="rotname">Routine name:</label>
+    <input type="text" id="rotname" name="rotname"><br>
     <button id="addBtn" onclick="addRot()">Add Routine</button>
     <datalist id="exercises">
         
     </datalist>
+    <div id="namesnackbar">Enter routine name</div>
+    <div id="datasnackbar">Enter valid exercises name</div>
+    <div id="exsnackbar">Add exercises</div>
 </body>
 </html>
 <script src="./javascript/addRoutine.js" defer></script>

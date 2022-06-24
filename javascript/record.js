@@ -18,7 +18,7 @@ const lengthBtn = document.getElementById('length');
 const exName = document.getElementById('exname');
 const datatoast = document.getElementById('datasnackbar');
 const nametoast = document.getElementById('namesnackbar');
-var constraints = { width: 1280, height: 720, frameRate: { min: 30} };
+var constraints = { width: 1280, height: 720, frameRate: { min: 30 } };
 var ids = [];
 var recording = false;
 var counting = false;
@@ -122,14 +122,14 @@ function addRec()
   var ex = [];
   if(Object.keys(data).length == 0)
   {
-    datasnackbar.className = "show";
-    setTimeout(function(){ datasnackbar.className = datasnackbar.className.replace("show", ""); }, 3000);
+    datatoast.className = "show";
+    setTimeout(function(){ datatoast.className = datatoast.className.replace("show", ""); }, 3000);
     return;
   }
   if(exName.value == '')
   {
-    namesnackbar.className = "show";
-    setTimeout(function(){ namesnackbar.className = namesnackbar.className.replace("show", ""); }, 3000);
+    nametoast.className = "show";
+    setTimeout(function(){ nametoast.className = nametoast.className.replace("show", ""); }, 3000);
     return;
   }
   ex.push(exName.value);
@@ -166,6 +166,7 @@ function joint_clicked(btn, id)
   }
 }
 const getCameraSelection = async () => {
+  await navigator.mediaDevices.getUserMedia({audio: true, video: true});   
   const devices = await navigator.mediaDevices.enumerateDevices();
   const videoDevices = devices.filter(device => device.kind === 'videoinput');
   const options = videoDevices.map(videoDevice => {
