@@ -132,7 +132,6 @@ function addRec()
     setTimeout(function(){ nametoast.className = nametoast.className.replace("show", ""); }, 3000);
     return;
   }
-  ex.push(exName.value);
   for(var a = 0; a < ids.length; a++)
   {
     rec = data[ids[a][1]];
@@ -145,8 +144,8 @@ function addRec()
   if(localStorage.hasOwnProperty("exercises"))
     var exercises = JSON.parse(localStorage.exercises);
   else 
-    var exercises = [];
-  exercises.push(ex);
+    var exercises = {};
+  exercises[exName.value] = ex;
   localStorage.exercises = JSON.stringify(exercises);
   window.location.href = './exercises.html';
 }

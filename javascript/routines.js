@@ -3,13 +3,13 @@ const datalist = document.getElementById('routines');
 if(localStorage.hasOwnProperty("routines"))
     var routines = JSON.parse(localStorage.routines);
 else 
-    var routines = [];
+    var routines = {};
 
-routines.forEach(function(item){
+for(const [key, value] of Object.entries(routines)) {
     var option = document.createElement('option');
-    option.value = item[0];
+    option.value = key;
     datalist.appendChild(option);
-});
+}
 
 function saveRoutine(object)
 {

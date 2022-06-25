@@ -1,22 +1,32 @@
 const rot = document.getElementById('routines');
 
-var routines = JSON.parse(localStorage.routines);
+if(localStorage.hasOwnProperty("routines"))
+    var routines = JSON.parse(localStorage.routines);
+else 
+    var routines = {};
 
-for(var a = 0; a < routines.length; a++)
-{
+for(const [key, value] of Object.entries(routines)) {
     var li = document.createElement("li");
+    var editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.addEventListener('click', function(){ editRot(key); })
     var delBtn = document.createElement("button");
-    var index = a;
     delBtn.textContent = "Delete";
-    delBtn.addEventListener('click', function(){ delRot(index); } );
-    li.textContent = routines[a][0].toString();
+    delBtn.addEventListener('click', function(){ delEx(key); } );
+    li.textContent = key;
+    li.appendChild(editBtn);
     li.appendChild(delBtn);
     rot.appendChild(li);
 }
 
-function delRot(index)
+function delRot(key)
 {
-    routines.splice(index, 1);
-    localStorage.exercises = JSON.stringify(exercises);
+    delete routines[key];
+    localStorage.routines = JSON.stringify(routiness);
     document.location.reload();
+}
+
+function editRot(key)
+{
+    window.location.href='./addRoutine.html?rot=' + key;
 }

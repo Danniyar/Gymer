@@ -1,22 +1,23 @@
 const ex = document.getElementById('exercises');
 
-var exercises = JSON.parse(localStorage.exercises);
+if(localStorage.hasOwnProperty("exercises"))
+    var exercises = JSON.parse(localStorage.exercises);
+else 
+    var exercises = {};
 
-for(var a = 0; a < exercises.length; a++)
-{
+for(const [key, value] of Object.entries(exercises)) {
     var li = document.createElement("li");
     var delBtn = document.createElement("button");
-    var index = a;
     delBtn.textContent = "Delete";
-    delBtn.addEventListener('click', function(){ delEx(index); } );
-    li.textContent = exercises[a][0].toString();
+    delBtn.addEventListener('click', function(){ delEx(key); } );
+    li.textContent = key;
     li.appendChild(delBtn);
     ex.appendChild(li);
 }
 
-function delEx(index)
+function delEx(key)
 {
-    exercises.splice(index, 1);
+    delete exercises[key];
     localStorage.exercises = JSON.stringify(exercises);
     document.location.reload();
 }
