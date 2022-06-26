@@ -12,7 +12,7 @@ for(const [key, value] of Object.entries(routines)) {
     editBtn.addEventListener('click', function(){ editRot(key); })
     var delBtn = document.createElement("button");
     delBtn.textContent = "Delete";
-    delBtn.addEventListener('click', function(){ delEx(key); } );
+    delBtn.addEventListener('click', function(){ delRot(key); } );
     li.textContent = key;
     li.appendChild(editBtn);
     li.appendChild(delBtn);
@@ -22,7 +22,7 @@ for(const [key, value] of Object.entries(routines)) {
 function delRot(key)
 {
     delete routines[key];
-    localStorage.routines = JSON.stringify(routiness);
+    localStorage.routines = JSON.stringify(routines);
     document.location.reload();
 }
 

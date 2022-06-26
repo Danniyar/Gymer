@@ -9,8 +9,8 @@ const sets = document.getElementById('sets');
 var constraints = { width: 1280, height: 720, frameRate: { min: 30 } };
 var ids = [];
 var counting = true;
-var prevAngle = -1;
-var upAngle = 0;
+var prevAngle = [];
+var upAngle = [];
 var count = 0;
 var defaultreps = 0;
 
@@ -35,14 +35,19 @@ function nextEx()
     var item = routine[count];
     if(item[0] in exercises)
     {
-        ids.push(exercises[item[0]][0][0]);
-        exName.textContent = item[0];
-        sets.textContent = item[1];
-        reps.textContent = item[2];
-        defaultreps = item[2];
+      for(var a = 0; a < exercises[item[0]].length; a++)
+      {
+        ids.push(exercises[item[0]][a][0]);
+        prevAngle.push(1000);
+        upAngle.push(0);
+      }
+      exName.textContent = item[0];
+      sets.textContent = item[1];
+      reps.textContent = item[2];
+      defaultreps = item[2];
     }
     else 
-        routine.splice(routine.indexOf(item), 1);
+      routine.splice(routine.indexOf(item), 1);
     localrot[rotkey] = routine;
     localStorage.routines = JSON.stringify(localrot);
 }
@@ -69,29 +74,20 @@ function onResults(results) {
     var x2 = results.poseLandmarks[id[1]].x, y2 = results.poseLandmarks[id[1]].y, z2 = results.poseLandmarks[id[1]].z;
     var x3 = results.poseLandmarks[id[2]].x, y3 = results.poseLandmarks[id[2]].y, z3 = results.poseLandmarks[id[2]].z;
     var angle = (Math.atan2(y3-y2, x3-x2)-Math.atan2(y1-y2,x1-x2)) * (180/Math.PI);
-    if(angle < 0)
-      angle += 360;
-    if(parseInt(angle) > parseInt(prevAngle) && prevAngle != -1)
-        upAngle += angle-prevAngle;
-    else if(angle < prevAngle)
+    var pass = false;
+    if(parseInt(angle) > parseInt(prevAngle[a]) && prevAngle[a] != 1000)
+        upAngle[a] += angle-prevAngle[a];
+    else if(angle < prevAngle[a])
     {
-        if(parseInt(upAngle) >= parseInt(exercises[exName.textContent][a][1])-20)
+        if(parseInt(upAngle[a]) >= parseInt(exercises[exName.textContent][a][1])/2)
         {
-            reps.textContent = parseInt(reps.textContent)-1;
-            if(reps.textContent == 0)
-            {
-                sets.textContent = parseInt(sets.textContent)-1;
-                reps.textContent = defaultreps;
-            }
-            if(sets.textContent == 0)
-            {
-                count++;
-                nextEx();
-            }
+          pass = true;
         }
-        upAngle = 0;
+        else 
+          pass = false;
+        upAngle[a] = 0;
     }
-    prevAngle = angle;
+    prevAngle[a] = angle;
     //canvasCtx.fillText(angle.toString(), x2*canvasElement.clientWidth - 50, y2*canvasElement.clientHeight + 20);
     for(var b = 0; b < 3; b++)
     {
@@ -103,6 +99,20 @@ function onResults(results) {
     }
     showConnections.push([landmarksPosition[id[0]],landmarksPosition[id[1]]]);
     showConnections.push([landmarksPosition[id[1]],landmarksPosition[id[2]]]);
+  }
+  if(pass)
+  {
+    reps.textContent = parseInt(reps.textContent)-1;
+    if(reps.textContent == 0)
+    {
+      sets.textContent = parseInt(sets.textContent)-1;
+      reps.textContent = defaultreps;
+    }
+    if(sets.textContent == 0)
+    {
+      count++;
+      nextEx();
+    }
   }
   canvasCtx.globalCompositeOperation = 'source-over';
   drawConnectors(canvasCtx, showLandmarks, showConnections,
