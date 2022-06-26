@@ -1,0 +1,14 @@
+.output_canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color:rgba(0, 0, 0, 0);
+}
+video {
+    width: 100%;
+    min-height: 480px;
+    height: calc((9 / 16) * 100vw);
+    max-height: calc(100vh - 169px);
+    object-fit: fill;
+}

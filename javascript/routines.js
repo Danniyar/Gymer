@@ -25,6 +25,12 @@ if(localStorage.hasOwnProperty("dailyRoutines"))
 {
     var dr = JSON.parse(localStorage.dailyRoutines);
     for(const [key, value] of Object.entries(dr)) {
-        document.getElementById(key).value = value;
+        if(value in routines == false)
+            continue;
+        document.getElementsByName(key)[0].value = value;
+        var startBtn = document.createElement('button');
+        startBtn.textContent = 'Start';
+        startBtn.addEventListener('click',function(){ window.location.href='./playRoutine.html?rot=' + value; });
+        document.getElementById(key).appendChild(startBtn);
     }
 }

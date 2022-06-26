@@ -42,9 +42,9 @@ function onResults(results) {
   }
   canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
   curTime = Math.floor(Date.now()/100)-startTime;
-  showLandmarks = []
-  showConnections = []
-  landmarksPosition = {}
+  showLandmarks = [];
+  showConnections = [];
+  landmarksPosition = {};
   for(var a = 0; a < ids.length; a++)
   {
     var id = ids[a];
@@ -139,7 +139,7 @@ function addRec()
     var maxDeg = rec[rec.length-1][1];
     var minDeg = rec[0][1];
     console.log(maxDeg-minDeg);
-    ex.push([ids[a][1], maxDeg-minDeg]);
+    ex.push([ids[a], maxDeg-minDeg]);
   }
   if(localStorage.hasOwnProperty("exercises"))
     var exercises = JSON.parse(localStorage.exercises);
