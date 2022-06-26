@@ -9,8 +9,9 @@ const sets = document.getElementById('sets');
 var constraints = { width: 1280, height: 720, frameRate: { min: 30 } };
 var ids = [];
 var counting = true;
+var rangles = [];
 var prevAngle = [];
-var upAngle = [];
+var kd = []
 var count = 0;
 var defaultreps = 0;
 
@@ -39,7 +40,8 @@ function nextEx()
       {
         ids.push(exercises[item[0]][a][0]);
         prevAngle.push(1000);
-        upAngle.push(0);
+        kd.push(false);
+        rangles.push([exercises[item[0]][a][1]-30,exercises[item[0]][a][2]+10])
       }
       exName.textContent = item[0];
       sets.textContent = item[1];
@@ -74,18 +76,27 @@ function onResults(results) {
     var x2 = results.poseLandmarks[id[1]].x, y2 = results.poseLandmarks[id[1]].y, z2 = results.poseLandmarks[id[1]].z;
     var x3 = results.poseLandmarks[id[2]].x, y3 = results.poseLandmarks[id[2]].y, z3 = results.poseLandmarks[id[2]].z;
     var angle = (Math.atan2(y3-y2, x3-x2)-Math.atan2(y1-y2,x1-x2)) * (180/Math.PI);
+    if(angle < 0)
+      angle += 360;
     var pass = false;
-    if(parseInt(angle) > parseInt(prevAngle[a]) && prevAngle[a] != 1000)
-        upAngle[a] += angle-prevAngle[a];
-    else if(angle < prevAngle[a])
+    console.log(angle,parseInt(rangles[a][0]),parseInt(rangles[a][1]));
+    if(angle < prevAngle[a])
     {
-        if(parseInt(upAngle[a]) >= parseInt(exercises[exName.textContent][a][1])/2)
+        if(parseInt(prevAngle[a]) >= parseInt(rangles[a][0]) && kd[a])
         {
           pass = true;
+          kd[a] = false;
         }
-        else 
+        else if(parseInt(angle) <= parseInt(rangles[a][1]))
+        {
+          kd[a] = true;
           pass = false;
-        upAngle[a] = 0;
+        }
+        else
+        {
+          kd[a] = false;
+          pass = false;
+        }
     }
     prevAngle[a] = angle;
     //canvasCtx.fillText(angle.toString(), x2*canvasElement.clientWidth - 50, y2*canvasElement.clientHeight + 20);

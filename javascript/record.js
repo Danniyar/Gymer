@@ -52,6 +52,8 @@ function onResults(results) {
     var x2 = results.poseLandmarks[id[1]].x, y2 = results.poseLandmarks[id[1]].y, z2 = results.poseLandmarks[id[1]].z;
     var x3 = results.poseLandmarks[id[2]].x, y3 = results.poseLandmarks[id[2]].y, z3 = results.poseLandmarks[id[2]].z;
     var angle = (Math.atan2(y3-y2, x3-x2)-Math.atan2(y1-y2,x1-x2)) * (180/Math.PI);
+    if(angle < 0)
+      angle += 360;
     if((id[1] in data) == false)
       data[id[1]] = [];
     if(curTime != prevTime)
@@ -136,7 +138,7 @@ function addRec()
     rec.sort(function(a, b) { return a[1] - b[1]; });
     var maxDeg = rec[rec.length-1][1];
     var minDeg = rec[0][1];
-    ex.push([ids[a], maxDeg-minDeg]);
+    ex.push([ids[a], maxDeg, minDeg]);
   }
   if(localStorage.hasOwnProperty("exercises"))
     var exercises = JSON.parse(localStorage.exercises);
