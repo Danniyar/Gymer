@@ -54,11 +54,15 @@ function onResults(results) {
     var angle = (Math.atan2(y3-y2, x3-x2)-Math.atan2(y1-y2,x1-x2)) * (180/Math.PI);
     if(angle < 0)
       angle += 360;
+    if(angle > 180)
+      angle = 360-angle;
+    if(angle < 30)
+      angle = 30;
     if((id[1] in data) == false)
       data[id[1]] = [];
     if(curTime != prevTime)
       data[id[1]].push([curTime*0.1,angle]);
-    canvasCtx.fillText(angle.toString(), x2*canvasElement.clientWidth - 50, y2*canvasElement.clientHeight + 20);
+    //canvasCtx.fillText(angle.toString(), x2*canvasElement.clientWidth - 50, y2*canvasElement.clientHeight + 20);
     for(var b = 0; b < 3; b++)
     {
       if(showLandmarks.includes(results.poseLandmarks[id[b]]) == false)

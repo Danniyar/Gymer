@@ -6,9 +6,12 @@ const canvasCtx = canvasElement.getContext('2d');
 const exName = document.getElementById('exercise');
 const reps = document.getElementById('reps');
 const sets = document.getElementById('sets');
+const delayBtn = document.getElementById('delay');
+const startBtn = document.getElementById('pauseBtn');
 var constraints = { width: 1280, height: 720, frameRate: { min: 30 } };
 var ids = [];
-var counting = true;
+var counting = false;
+var dropdown = false;
 var rangles = [];
 var prevAngle = [];
 var kd = []
@@ -41,7 +44,7 @@ function nextEx()
         ids.push(exercises[item[0]][a][0]);
         prevAngle.push(1000);
         kd.push(false);
-        rangles.push([exercises[item[0]][a][1]-30,exercises[item[0]][a][2]+10])
+        rangles.push([exercises[item[0]][a][1]-30,exercises[item[0]][a][2]+30])
       }
       exName.textContent = item[0];
       sets.textContent = item[1];
@@ -61,6 +64,21 @@ window.addEventListener("resize", (e) => {
   canvasElement.height = videoElement.offsetHeight;
 }, false);
 
+function startPress()
+{
+  if(!counting)
+  {
+    dropdown = true;
+    startDelayTime = Date.now();
+    setTimeout(function(){ counting = true; dropdown = false; startBtn.textContent = 'Stop'; }, parseFloat(delayBtn.value)*1000);
+  }
+  else
+  {
+    startBtn.textContent = 'Start';
+    counting = false;
+  }
+}
+
 function onResults(results) {
   if (!results.poseLandmarks) {
     return;
@@ -72,34 +90,36 @@ function onResults(results) {
   for(var a = 0; a < ids.length; a++)
   {
     var id = ids[a];
-    var x1 = results.poseLandmarks[id[0]].x, y1 = results.poseLandmarks[id[0]].y, z1 = results.poseLandmarks[id[0]].z;
-    var x2 = results.poseLandmarks[id[1]].x, y2 = results.poseLandmarks[id[1]].y, z2 = results.poseLandmarks[id[1]].z;
-    var x3 = results.poseLandmarks[id[2]].x, y3 = results.poseLandmarks[id[2]].y, z3 = results.poseLandmarks[id[2]].z;
-    var angle = (Math.atan2(y3-y2, x3-x2)-Math.atan2(y1-y2,x1-x2)) * (180/Math.PI);
-    if(angle < 0)
-      angle += 360;
-    var pass = false;
-    console.log(angle,parseInt(rangles[a][0]),parseInt(rangles[a][1]));
-    if(angle < prevAngle[a])
+    if(counting)
     {
-        if(parseInt(prevAngle[a]) >= parseInt(rangles[a][0]) && kd[a])
-        {
-          pass = true;
-          kd[a] = false;
-        }
-        else if(parseInt(angle) <= parseInt(rangles[a][1]))
-        {
-          kd[a] = true;
-          pass = false;
-        }
-        else
-        {
-          kd[a] = false;
-          pass = false;
-        }
+      var x1 = results.poseLandmarks[id[0]].x, y1 = results.poseLandmarks[id[0]].y, z1 = results.poseLandmarks[id[0]].z;
+      var x2 = results.poseLandmarks[id[1]].x, y2 = results.poseLandmarks[id[1]].y, z2 = results.poseLandmarks[id[1]].z;
+      var x3 = results.poseLandmarks[id[2]].x, y3 = results.poseLandmarks[id[2]].y, z3 = results.poseLandmarks[id[2]].z;
+      var angle = (Math.atan2(y3-y2, x3-x2)-Math.atan2(y1-y2,x1-x2)) * (180/Math.PI);
+      if(angle < 0)
+        angle += 360;
+      if(angle > 180)
+        angle = 360-angle;
+      if(angle < 30)
+        angle = 30;
+      var pass = false;
+      console.log(angle,parseInt(rangles[a][0]),parseInt(rangles[a][1]));
+      if(angle < prevAngle[a])
+      {
+          if(parseInt(prevAngle[a]) >= parseInt(rangles[a][0]) && kd[a])
+          {
+            pass = true;
+            kd[a] = false;
+          }
+          else if(parseInt(angle) <= parseInt(rangles[a][1]))
+          {
+            kd[a] = true;
+            pass = false;
+          }
+      } 
+      prevAngle[a] = angle;
+      //canvasCtx.fillText(angle.toString(), x2*canvasElement.clientWidth - 50, y2*canvasElement.clientHeight + 20);
     }
-    prevAngle[a] = angle;
-    //canvasCtx.fillText(angle.toString(), x2*canvasElement.clientWidth - 50, y2*canvasElement.clientHeight + 20);
     for(var b = 0; b < 3; b++)
     {
       if(showLandmarks.includes(results.poseLandmarks[id[b]]) == false)
@@ -111,7 +131,7 @@ function onResults(results) {
     showConnections.push([landmarksPosition[id[0]],landmarksPosition[id[1]]]);
     showConnections.push([landmarksPosition[id[1]],landmarksPosition[id[2]]]);
   }
-  if(pass)
+  if(counting && pass)
   {
     reps.textContent = parseInt(reps.textContent)-1;
     if(reps.textContent == 0)
@@ -124,6 +144,13 @@ function onResults(results) {
       count++;
       nextEx();
     }
+  }
+  if(dropdown)
+  {
+    canvasCtx.font = '100px sans-serif';
+    delayTime = Math.round(delayBtn.value-(Date.now()-startDelayTime)/1000);
+    canvasCtx.fillStyle = "red";
+    canvasCtx.fillText(delayTime.toString(),canvasElement.width/2,canvasElement.height/2,100);
   }
   canvasCtx.globalCompositeOperation = 'source-over';
   drawConnectors(canvasCtx, showLandmarks, showConnections,
