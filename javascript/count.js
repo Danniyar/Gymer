@@ -53,6 +53,8 @@ function nextEx()
     }
     else 
       routine.splice(routine.indexOf(item), 1);
+    startBtn.textContent = 'Start';
+    counting = false;
     localrot[rotkey] = routine;
     localStorage.routines = JSON.stringify(localrot);
 }
@@ -138,6 +140,8 @@ function onResults(results) {
     {
       sets.textContent = parseInt(sets.textContent)-1;
       reps.textContent = defaultreps;
+      startBtn.textContent = 'Start';
+      counting = false;
     }
     if(sets.textContent == 0)
     {
