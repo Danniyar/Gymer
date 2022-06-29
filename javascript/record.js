@@ -139,10 +139,11 @@ function addRec()
   for(var a = 0; a < ids.length; a++)
   {
     rec = data[ids[a][1]];
+    var firstAngle = rec[0][1];
     rec.sort(function(a, b) { return a[1] - b[1]; });
     var maxDeg = rec[rec.length-1][1];
     var minDeg = rec[0][1];
-    ex.push([ids[a], maxDeg, minDeg]);
+    ex.push([ids[a], maxDeg, minDeg, firstAngle]);
   }
   if(localStorage.hasOwnProperty("exercises"))
     var exercises = JSON.parse(localStorage.exercises);
@@ -154,13 +155,13 @@ function addRec()
 }
 function joint_clicked(btn, id)
 {
-  if(btn.textContent == "+")
+  if(btn.textContent == "+" && !recording)
   {
     btn.style.background = "lime";
     btn.textContent = "-";
     ids.push(id);
   }
-  else 
+  else if(!recording)
   {
     btn.style.background = "red";
     btn.textContent = "+";

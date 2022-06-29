@@ -12,9 +12,10 @@ var constraints = { width: 1280, height: 720, frameRate: { min: 30 } };
 var ids = [];
 var counting = false;
 var dropdown = false;
-var rangles = [];
-var prevAngle = [];
-var kd = []
+var kdangle = [];
+var repangle = [];
+var pass = [];
+var kd = [];
 var count = 0;
 var defaultreps = 0;
 
@@ -37,14 +38,30 @@ function nextEx()
     var localrot = JSON.parse(localStorage.routines);
     var routine = localrot[rotkey];
     var item = routine[count];
+    kdangle = [];
+    repangle = [];
+    pass = [];
+    kd = [];
+    ids = [];
     if(item[0] in exercises)
     {
       for(var a = 0; a < exercises[item[0]].length; a++)
       {
         ids.push(exercises[item[0]][a][0]);
-        prevAngle.push(1000);
         kd.push(false);
-        rangles.push([exercises[item[0]][a][1]-30,exercises[item[0]][a][2]+30])
+        var diff = Math.abs(exercises[item[0]][a][1]-exercises[item[0]][a][2])/5;
+        var firstAngle = exercises[item[0]][a][3];
+        if(Math.abs(exercises[item[0]][a][1]-firstAngle) > Math.abs(exercises[item[0]][a][2]-firstAngle))
+        {
+          repangle.push(exercises[item[0]][a][1]-diff);
+          kdangle.push(exercises[item[0]][a][2]+diff);
+        }
+        else 
+        {
+          repangle.push(exercises[item[0]][a][2]+diff);
+          kdangle.push(exercises[item[0]][a][1]-diff);
+        }
+        pass.push(false);
       }
       exName.textContent = item[0];
       sets.textContent = item[1];
@@ -55,6 +72,7 @@ function nextEx()
       routine.splice(routine.indexOf(item), 1);
     startBtn.textContent = 'Start';
     counting = false;
+    dropdown = false;
     localrot[rotkey] = routine;
     localStorage.routines = JSON.stringify(localrot);
 }
@@ -104,22 +122,25 @@ function onResults(results) {
         angle = 360-angle;
       if(angle < 30)
         angle = 30;
-      var pass = false;
-      console.log(angle,parseInt(rangles[a][0]),parseInt(rangles[a][1]));
-      if(angle < prevAngle[a])
+      //console.log(angle,parseInt(rangles[a][0]),parseInt(rangles[a][1]));
+      if(kdangle[a] > repangle[a])
       {
-          if(parseInt(prevAngle[a]) >= parseInt(rangles[a][0]) && kd[a])
-          {
-            pass = true;
-            kd[a] = false;
-          }
-          else if(parseInt(angle) <= parseInt(rangles[a][1]))
-          {
-            kd[a] = true;
-            pass = false;
-          }
-      } 
-      prevAngle[a] = angle;
+        if(angle <= repangle[a] && kd[a])
+          pass[a] = true;
+        else
+          pass[a] = false;
+        if(angle >= kdangle[a])
+          kd[a] = true;
+      }
+      else 
+      {
+        if(angle >= repangle[a] && kd[a])
+          pass[a] = true;
+        else
+          pass[a] = false;
+        if(angle <= kdangle[a])
+          kd[a] = true;
+      }
       //canvasCtx.fillText(angle.toString(), x2*canvasElement.clientWidth - 50, y2*canvasElement.clientHeight + 20);
     }
     for(var b = 0; b < 3; b++)
@@ -130,10 +151,12 @@ function onResults(results) {
         landmarksPosition[id[b]] = showLandmarks.length-1;
       }
     }
-    showConnections.push([landmarksPosition[id[0]],landmarksPosition[id[1]]]);
-    showConnections.push([landmarksPosition[id[1]],landmarksPosition[id[2]]]);
+    showConnections.push([landmarksPosition[id[0]], landmarksPosition[id[1]]]);
+    showConnections.push([landmarksPosition[id[1]], landmarksPosition[id[2]]]);
   }
-  if(counting && pass)
+  if(pass.includes(true))
+    console.log(pass);
+  if(counting && !pass.includes(false))
   {
     reps.textContent = parseInt(reps.textContent)-1;
     if(reps.textContent == 0)
@@ -147,6 +170,11 @@ function onResults(results) {
     {
       count++;
       nextEx();
+    }
+    for(var i = 0; i < pass.length; i++)
+    {
+      pass[i] = false;
+      kd[i] = false;
     }
   }
   if(dropdown)
