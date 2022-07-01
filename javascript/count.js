@@ -98,6 +98,11 @@ function startPress()
     counting = false;
   }
 }
+function skipPress()
+{
+  count++;
+  nextEx();
+}
 
 function onResults(results) {
   if (!results.poseLandmarks) {
