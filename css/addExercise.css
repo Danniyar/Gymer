@@ -30,6 +30,7 @@ img {
     float: right;
 }
 video {
+    position: absolute;
     width: 100%;
     min-height: 480px;
     height: calc((9 / 16) * 100vw);

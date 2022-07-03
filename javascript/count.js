@@ -8,6 +8,8 @@ const reps = document.getElementById('reps');
 const sets = document.getElementById('sets');
 const delayBtn = document.getElementById('delay');
 const startBtn = document.getElementById('pauseBtn');
+const resetCheck = document.getElementById('resetset');
+const resetExCheck = document.getElementById('resetex')
 var constraints = { width: 1280, height: 720, frameRate: { min: 30 } };
 var ids = [];
 var counting = false;
@@ -49,7 +51,7 @@ function nextEx()
       {
         ids.push(exercises[item[0]][a][0]);
         kd.push(false);
-        var diff = Math.abs(exercises[item[0]][a][1]-exercises[item[0]][a][2])/5;
+        var diff = Math.abs(exercises[item[0]][a][1]-exercises[item[0]][a][2])/3.5;
         var firstAngle = exercises[item[0]][a][3];
         if(Math.abs(exercises[item[0]][a][1]-firstAngle) > Math.abs(exercises[item[0]][a][2]-firstAngle))
         {
@@ -70,9 +72,12 @@ function nextEx()
     }
     else 
       routine.splice(routine.indexOf(item), 1);
-    startBtn.textContent = 'Start';
-    counting = false;
-    dropdown = false;
+    if(resetExCheck.checked)
+    {
+      startBtn.textContent = 'Start';
+      counting = false;
+      dropdown = false;
+    }
     localrot[rotkey] = routine;
     localStorage.routines = JSON.stringify(localrot);
 }
@@ -168,8 +173,11 @@ function onResults(results) {
     {
       sets.textContent = parseInt(sets.textContent)-1;
       reps.textContent = defaultreps;
-      startBtn.textContent = 'Start';
-      counting = false;
+      if(resetCheck.checked)
+      {
+        startBtn.textContent = 'Start';
+        counting = false;
+      }
     }
     if(sets.textContent == 0)
     {

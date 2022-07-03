@@ -12,3 +12,7 @@ video {
     max-height: calc(100vh - 169px);
     object-fit: fill;
 }
+.exdesc {
+    position: absolute;
+    z-index: 10;
+}
