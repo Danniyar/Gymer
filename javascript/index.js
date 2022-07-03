@@ -17,9 +17,11 @@ document.getElementById("import").onchange = function(event) {
 function logFile (event) {
 	let str = event.target.result;
 	let json = JSON.parse(str);
+    var ls = JSON.parse(localStorage);
     for (const [key, value] of Object.entries(json)) {
-        localStorage.key = value;
+        ls[key] = value;
     }
+    localStorage = JSON.stringify(ls);
 }
 
 const download = () => (
