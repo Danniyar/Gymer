@@ -81,6 +81,14 @@ function addEx(ex,s,r)
     reps.setAttribute('step','1');
     reps.setAttribute("oninput","validity.valid||(value='');");
 
+    var sep = document.createElement('input');
+    sep.setAttribute('type','checkbox');
+    sep.setAttribute('id','sep' + count);
+    sep.setAttribute('name','sep' + count);
+    var labelsep = document.createElement('label');
+    labelsep.setAttribute('for','sep');
+    labelsep.textContent = 'Count joints as separate rep  ';
+
     var deleteBtn = document.createElement('button');
     var localcount = count;
     deleteBtn.addEventListener('click', function(){ deleteEx(localcount); });
@@ -91,6 +99,8 @@ function addEx(ex,s,r)
     li.appendChild(sets);
     li.appendChild(labelreps);
     li.appendChild(reps);
+    li.appendChild(sep);
+    li.appendChild(labelsep);
     li.appendChild(deleteBtn);
     li.setAttribute('id', count)
     ul.appendChild(li);
@@ -138,6 +148,7 @@ function addRot()
         ex.push(document.getElementById('ex' + lis[a].id).value);
         ex.push(document.getElementById('sets' + lis[a].id).value);
         ex.push(document.getElementById('reps' + lis[a].id).value);
+        ex.push(document.getElementById('sep' + lis[a].id).checked);
         rot.push(ex);
     }
     if(localStorage.hasOwnProperty("routines"))

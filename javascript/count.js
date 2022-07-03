@@ -14,6 +14,7 @@ var constraints = { width: 1280, height: 720, frameRate: { min: 30 } };
 var ids = [];
 var counting = false;
 var dropdown = false;
+var separate = false;
 var kdangle = [];
 var repangle = [];
 var pass = [];
@@ -23,7 +24,7 @@ var defaultreps = 0;
 
 if(localStorage.hasOwnProperty("exercises"))
     var exercises = JSON.parse(localStorage.exercises);
-else 
+else
     var exercises = {};
 function findGetParameter(parameterName) {
     var result = null, tmp = [];
@@ -51,7 +52,7 @@ function nextEx()
       {
         ids.push(exercises[item[0]][a][0]);
         kd.push(false);
-        var diff = Math.abs(exercises[item[0]][a][1]-exercises[item[0]][a][2])/3.5;
+        var diff = Math.abs(exercises[item[0]][a][1]-exercises[item[0]][a][2])/3;
         var firstAngle = exercises[item[0]][a][3];
         if(Math.abs(exercises[item[0]][a][1]-firstAngle) > Math.abs(exercises[item[0]][a][2]-firstAngle))
         {
@@ -68,6 +69,7 @@ function nextEx()
       exName.textContent = item[0];
       sets.textContent = item[1];
       reps.textContent = item[2];
+      separate = item[3];
       defaultreps = item[2];
     }
     else 
@@ -164,9 +166,12 @@ function onResults(results) {
     showConnections.push([landmarksPosition[id[0]], landmarksPosition[id[1]]]);
     showConnections.push([landmarksPosition[id[1]], landmarksPosition[id[2]]]);
   }
-  if(pass.includes(true))
-    console.log(pass);
-  if(counting && !pass.includes(false))
+  var totalpass = false;
+  if(separate && pass.includes(true))
+    totalpass = true;
+  else if(!separate && !pass.includes(false))
+    totalpass = true;
+  if(counting && totalpass)
   {
     reps.textContent = parseInt(reps.textContent)-1;
     if(reps.textContent == 0)
