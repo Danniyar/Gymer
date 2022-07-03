@@ -15,13 +15,12 @@ document.getElementById("import").onchange = function(event) {
 };
 
 function logFile (event) {
+    console.log('a');
 	let str = event.target.result;
 	let json = JSON.parse(str);
-    var ls = JSON.parse(localStorage);
     for (const [key, value] of Object.entries(json)) {
-        ls[key] = value;
+        localStorage[key] = JSON.stringify(value);
     }
-    localStorage = JSON.stringify(ls);
 }
 
 const download = () => (
