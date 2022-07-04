@@ -34,7 +34,7 @@ if(rotkey != null)
     var routine = localrot[rotkey];
     routine.forEach(function(item) {
         if(item[0] in exercises)
-            addEx(item[0],item[1],item[2]);
+            addEx(item[0],item[1],item[2],item[3]);
         else 
             routine.splice(routine.indexOf(item), 1);
     });
@@ -43,17 +43,18 @@ if(rotkey != null)
     localStorage.routines = JSON.stringify(localrot);
 }
 
-function addEx(ex,s,r)
+function addEx(ex,s,r,sepr)
 {
     ex = ex || null;
     s = s || 1;
     r = r || 1;
+    sepr = sepr || false;
     var li = document.createElement('li');
 
     var input = document.createElement('input');
     input.setAttribute('list', 'exercises');
     input.setAttribute('class', 'ex');
-    input.setAttribute('id', 'ex' + count)
+    input.setAttribute('id', 'ex' + count);
     if(ex != null)
         input.value = ex;
 
@@ -85,6 +86,7 @@ function addEx(ex,s,r)
     sep.setAttribute('type','checkbox');
     sep.setAttribute('id','sep' + count);
     sep.setAttribute('name','sep' + count);
+    sep.checked = sepr;
     var labelsep = document.createElement('label');
     labelsep.setAttribute('for','sep');
     labelsep.textContent = 'Count joints as separate rep  ';
