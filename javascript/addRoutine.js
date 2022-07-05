@@ -34,7 +34,7 @@ if(rotkey != null)
     var routine = localrot[rotkey];
     routine.forEach(function(item) {
         if(item[0] in exercises)
-            addEx(item[0],item[1],item[2],item[3]);
+            addEx(item[0],item[1],item[2]);
         else 
             routine.splice(routine.indexOf(item), 1);
     });
@@ -43,12 +43,11 @@ if(rotkey != null)
     localStorage.routines = JSON.stringify(localrot);
 }
 
-function addEx(ex,s,r,sepr)
+function addEx(ex,s,r)
 {
     ex = ex || null;
     s = s || 1;
     r = r || 1;
-    sepr = sepr || false;
     var li = document.createElement('li');
 
     var input = document.createElement('input');
@@ -82,15 +81,6 @@ function addEx(ex,s,r,sepr)
     reps.setAttribute('step','1');
     reps.setAttribute("oninput","validity.valid||(value='');");
 
-    var sep = document.createElement('input');
-    sep.setAttribute('type','checkbox');
-    sep.setAttribute('id','sep' + count);
-    sep.setAttribute('name','sep' + count);
-    sep.checked = sepr;
-    var labelsep = document.createElement('label');
-    labelsep.setAttribute('for','sep');
-    labelsep.textContent = 'Count joints as separate rep  ';
-
     var deleteBtn = document.createElement('button');
     var localcount = count;
     deleteBtn.addEventListener('click', function(){ deleteEx(localcount); });
@@ -101,8 +91,6 @@ function addEx(ex,s,r,sepr)
     li.appendChild(sets);
     li.appendChild(labelreps);
     li.appendChild(reps);
-    li.appendChild(sep);
-    li.appendChild(labelsep);
     li.appendChild(deleteBtn);
     li.setAttribute('id', count)
     ul.appendChild(li);
@@ -150,7 +138,6 @@ function addRot()
         ex.push(document.getElementById('ex' + lis[a].id).value);
         ex.push(document.getElementById('sets' + lis[a].id).value);
         ex.push(document.getElementById('reps' + lis[a].id).value);
-        ex.push(document.getElementById('sep' + lis[a].id).checked);
         rot.push(ex);
     }
     if(localStorage.hasOwnProperty("routines"))

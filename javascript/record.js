@@ -136,6 +136,7 @@ function addRec()
     setTimeout(function(){ nametoast.className = nametoast.className.replace("show", ""); }, 3000);
     return;
   }
+  ex.push(false);
   for(var a = 0; a < ids.length; a++)
   {
     rec = data[ids[a][1]];

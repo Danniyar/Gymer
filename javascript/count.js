@@ -9,7 +9,7 @@ const sets = document.getElementById('sets');
 const delayBtn = document.getElementById('delay');
 const startBtn = document.getElementById('pauseBtn');
 const resetCheck = document.getElementById('resetset');
-const resetExCheck = document.getElementById('resetex')
+const resetExCheck = document.getElementById('resetex');
 var constraints = { width: 1280, height: 720, frameRate: { min: 30 } };
 var ids = [];
 var counting = false;
@@ -65,7 +65,7 @@ function nextEx()
     ids = [];
     if(item[0] in exercises)
     {
-      for(var a = 0; a < exercises[item[0]].length; a++)
+      for(var a = 1; a < exercises[item[0]].length; a++)
       {
         ids.push(exercises[item[0]][a][0]);
         kd.push(false);
@@ -86,7 +86,7 @@ function nextEx()
       exName.textContent = item[0];
       sets.textContent = item[1];
       reps.textContent = item[2];
-      separate = item[3];
+      separate = exercises[item[0]][0];
       defaultreps = item[2];
     }
     else 
