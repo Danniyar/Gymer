@@ -12,6 +12,14 @@
     <link href="./css/playRoutine.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+    <div class="overlay"></div>
+    <div class="formPopup" id="popupForm">
+        <form class="formContainer">
+            <h2>Congratulations!</h2>
+            <h2 id="sessionTime"></h2>
+            <button type="button" class="btn cancel" onclick="closeTheForm()">Finish</button>
+        </form>
+    </div>
     <div class="exdesc">
         <label for="exercise" style="color:red; font-size:50px;">Exercise: </label>
         <i id="exercise" style="color:red; font-size:50px;">asd</i>

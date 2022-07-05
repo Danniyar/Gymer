@@ -21,6 +21,7 @@ var pass = [];
 var kd = [];
 var count = 0;
 var defaultreps = 0;
+var sessionTime = Date.now();
 
 if(localStorage.hasOwnProperty("exercises"))
     var exercises = JSON.parse(localStorage.exercises);
@@ -41,6 +42,22 @@ function nextEx()
     var localrot = JSON.parse(localStorage.routines);
     var routine = localrot[rotkey];
     var item = routine[count];
+    if(count >= routine.length)
+    {
+      var time = Math.round((Date.now()-sessionTime)/1000);
+      var hours = Math.floor(time/3600);
+      var minutes = Math.floor(time/60)-(hours*60);
+      var seconds = time%60;
+      if(seconds < 10)
+        seconds = '0' + seconds;
+      if(hours < 10)
+        hours = '0' + hours;
+      if(minutes < 10)
+        minutes = '0' + minutes;
+      document.getElementById('sessionTime').textContent = "Session Time: " + hours + ":" + minutes + ":" + seconds;
+      openTheForm();
+      return;
+    }
     kdangle = [];
     repangle = [];
     pass = [];
@@ -109,6 +126,13 @@ function skipPress()
 {
   count++;
   nextEx();
+}
+function openTheForm() {
+  document.getElementById("popupForm").style.display = "block";
+  document.getElementsByClassName("overlay")[0].style.display = "block";
+}
+function closeTheForm() {
+  window.location.href = './routines.html';
 }
 
 function onResults(results) {
