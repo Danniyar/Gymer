@@ -59,3 +59,11 @@ video {
     background-color: #cc0000;
     z-index: 16;
   }
+.info {
+  font-size:50px;
+  text-shadow:
+        0.07em 0 black,
+        0 0.07em black,
+        -0.07em 0 black,
+        0 -0.07em black;
+}

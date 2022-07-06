@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils_3d/control_utils_3d.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
-    <link href="./css/playRoutine.css" type="text/css" rel="stylesheet">
+    <link href="./css/playExercise.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <div class="overlay"></div>
@@ -21,11 +21,11 @@
         </form>
     </div>
     <div class="exdesc">
-        <label for="exercise" style="color:red; font-size:50px;">Exercise: </label>
-        <i id="exercise" style="color:red; font-size:50px;">asd</i>
+        <label for="exercise" class="info" style="color:red;">Exercise: </label>
+        <i class="info" id="exercise" style="color:red;">asd</i>
         <br>
-        <label for="reps" style="color:lime; font-size:50px;">Reps: </label>
-        <i id="reps" style="color:lime; font-size:50px;">0</i>
+        <label for="reps" class="info" style="color:lime;">Reps: </label>
+        <i class="info" id="reps" style="color:lime;">0</i>
     </div>
     <div class="container">
         <video class="input_video" autoplay muted playsinline></video>
