@@ -22,6 +22,7 @@ var kd = [];
 var count = 0;
 var defaultreps = 0;
 var sessionTime = Date.now();
+var finished = false;
 
 if(localStorage.hasOwnProperty("exercises"))
     var exercises = JSON.parse(localStorage.exercises);
@@ -130,6 +131,7 @@ function skipPress()
 function openTheForm() {
   document.getElementById("popupForm").style.display = "block";
   document.getElementsByClassName("overlay")[0].style.display = "block";
+  finished = true;
 }
 function closeTheForm() {
   window.location.href = './routines.html';
@@ -146,7 +148,7 @@ function onResults(results) {
   for(var a = 0; a < ids.length; a++)
   {
     var id = ids[a];
-    if(counting)
+    if(counting && !finished)
     {
       var x1 = results.poseLandmarks[id[0]].x, y1 = results.poseLandmarks[id[0]].y, z1 = results.poseLandmarks[id[0]].z;
       var x2 = results.poseLandmarks[id[1]].x, y2 = results.poseLandmarks[id[1]].y, z2 = results.poseLandmarks[id[1]].z;
