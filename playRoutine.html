@@ -40,12 +40,14 @@
             </select>
         </div>
         <label for="delay">Start Delay:</label>
-        <input type="number" id="delay" name="delay" value="3" min="0" max="10" step="1" oninput="validity.valid||(value='');">
+        <input type="number" id="delay" name="delay" value="3" min="1" max="10" step="1" oninput="validity.valid||(value='');">
         <input type="checkbox" id="resetset" checked>
         <label for="resetset">Restart after every set</label>
         <input type="checkbox" id="resetex" checked>
         <label for="resetex">Restart after every exercise</label><br>
         <button id="pauseBtn" onclick="startPress()">Start</button><br><br>
+        <button id="setBtn" onclick="setPress()">Restart Set</button>
+        <button id="exBtn" onclick="exPress()">Restart Exercise</button><br><br>
     </div>
     <button id="skipBtn" onclick="skipPress()">Skip Exercise</button><br><br>
 </body>

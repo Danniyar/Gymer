@@ -34,14 +34,14 @@
             </select>
         </div>
         <label for="delay">Record Delay:</label>
-        <input type="number" id="delay" name="delay" value="3" min="0" max="10" step="1" oninput="validity.valid||(value='');"><br>
+        <input type="number" id="delay" name="delay" value="3" min="1" max="10" step="1" oninput="validity.valid||(value='');"><br>
         <label for="length">Record Length:</label>
-        <input type="number" id="length" name="length" value="5" min="0" max="10" step="1" oninput="validity.valid||(value='');"><br>
+        <input type="number" id="length" name="length" value="5" min="1" max="10" step="1" oninput="validity.valid||(value='');"><br>
         <button id="recBtn" onclick="recPress()">Record</button><br><br>
     </div>
     <br>
     <label for="exname">Exercise name:</label>
-    <input type="text" id="exname" name="exname"><br>
+    <input type="text" id="exname" name="exname"><br><br>
     <button id="addBtn" onclick="addRec()">Add</button>
     <div id="namesnackbar">Enter exercise name</div>
     <div id="datasnackbar">Record exercise</div>

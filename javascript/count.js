@@ -21,6 +21,7 @@ var pass = [];
 var kd = [];
 var count = 0;
 var defaultreps = 0;
+var defaultsets = 0;
 var sessionTime = Date.now();
 var finished = false;
 
@@ -28,6 +29,15 @@ if(localStorage.hasOwnProperty("exercises"))
     var exercises = JSON.parse(localStorage.exercises);
 else
     var exercises = {};
+
+if(localStorage.hasOwnProperty("settings"))
+    var settings = JSON.parse(localStorage.settings);
+else
+{
+    var settings = {};
+    settings['routines'] = {};
+}
+
 function findGetParameter(parameterName) {
     var result = null, tmp = [];
     location.search.substr(1).split("&").forEach(function (item) {
@@ -38,12 +48,27 @@ function findGetParameter(parameterName) {
     return result;
 }
 var rotkey = findGetParameter('rot')
+
+if(rotkey in settings['routines'])
+{
+  delayBtn.value = settings['routines'][rotkey][0];
+  resetCheck.checked = settings['routines'][rotkey][1];
+  resetExCheck.checked = settings['routines'][rotkey][2];
+}
+
+delayBtn.onchange = function(){ settingsChange(); };
+resetCheck.onchange = function(){ settingsChange(); };
+resetExCheck.onchange = function(){ settingsChange(); };
+
 function nextEx()
 {
     var localrot = JSON.parse(localStorage.routines);
     var routine = localrot[rotkey];
-    var item = routine[count];
-    if(count >= routine.length)
+    if(routine != undefined)
+      var item = routine[count];
+    if(item != undefined && !(item[0] in exercises))
+      routine.splice(routine.indexOf(item), 1);
+    if(routine == undefined || count >= routine.length)
     {
       var time = Math.round((Date.now()-sessionTime)/1000);
       var hours = Math.floor(time/3600);
@@ -88,10 +113,9 @@ function nextEx()
       sets.textContent = item[1];
       reps.textContent = item[2];
       separate = exercises[item[0]][0];
+      defaultsets = item[1];
       defaultreps = item[2];
     }
-    else 
-      routine.splice(routine.indexOf(item), 1);
     if(resetExCheck.checked)
     {
       startBtn.textContent = 'Start';
@@ -123,10 +147,24 @@ function startPress()
     counting = false;
   }
 }
+function setPress()
+{
+  reps.textContent = defaultreps;
+}
+function exPress()
+{
+  sets.textContent = defaultsets;
+  reps.textContent = defaultreps;
+}
 function skipPress()
 {
   count++;
   nextEx();
+}
+function settingsChange()
+{
+  settings['routines'][rotkey] = [delayBtn.value,resetCheck.checked,resetExCheck.checked];
+  localStorage.settings = JSON.stringify(settings);
 }
 function openTheForm() {
   document.getElementById("popupForm").style.display = "block";

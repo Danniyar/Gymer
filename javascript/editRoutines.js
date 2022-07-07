@@ -21,6 +21,12 @@ for(const [key, value] of Object.entries(routines)) {
 
 function delRot(key)
 {
+    if(localStorage.hasOwnProperty("settings"))
+    {
+        var settings = JSON.parse(localStorage.settings);
+        delete settings['routines'][key];
+        localStorage.settings = JSON.stringify(settings);
+    }
     delete routines[key];
     localStorage.routines = JSON.stringify(routines);
     document.location.reload();

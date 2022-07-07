@@ -1,14 +1,18 @@
-const datalist = document.getElementById('routines');
+const selects = document.getElementsByTagName('select');
 
 if(localStorage.hasOwnProperty("routines"))
     var routines = JSON.parse(localStorage.routines);
 else 
     var routines = {};
 
-for(const [key, value] of Object.entries(routines)) {
-    var option = document.createElement('option');
-    option.value = key;
-    datalist.appendChild(option);
+for(var a = 0; a < selects.length; a++)
+{
+    for(const [key, value] of Object.entries(routines)) {
+        var option = document.createElement('option');
+        option.value = key;
+        option.textContent = key;
+        selects[a].appendChild(option);
+    }
 }
 
 function saveRoutine(object)
@@ -25,9 +29,10 @@ if(localStorage.hasOwnProperty("dailyRoutines"))
 {
     var dr = JSON.parse(localStorage.dailyRoutines);
     for(const [key, value] of Object.entries(dr)) {
-        if(value in routines == false)
-            continue;
-        document.getElementsByName(key)[0].value = value;
+        if(value in routines)
+            document.getElementsByName(key)[0].value = value;
+        else 
+            saveRoutine(document.getElementsByName(key)[0]);
         var startBtn = document.createElement('button');
         startBtn.textContent = 'Start';
         startBtn.addEventListener('click',function(){ window.location.href='./playRoutine.html?rot=' + value; });

@@ -11,12 +11,6 @@ if(localStorage.hasOwnProperty("exercises"))
 else 
     var exercises = {};
 
-for(const [key, value] of Object.entries(exercises)) {
-    var option = document.createElement('option');
-    option.value = key;
-    datalist.appendChild(option);
-}
-
 function findGetParameter(parameterName) {
     var result = null, tmp = [];
     location.search.substr(1).split("&").forEach(function (item) {
@@ -50,12 +44,17 @@ function addEx(ex,s,r)
     r = r || 1;
     var li = document.createElement('li');
 
-    var input = document.createElement('input');
-    input.setAttribute('list', 'exercises');
-    input.setAttribute('class', 'ex');
-    input.setAttribute('id', 'ex' + count);
+    var selecta = document.createElement('select');
+    selecta.setAttribute('class', 'ex');
+    selecta.setAttribute('id', 'ex' + count);
+    for(const [key, value] of Object.entries(exercises)) {
+        var option = document.createElement('option');
+        option.value = key;
+        option.textContent = key;
+        selecta.appendChild(option);
+    }
     if(ex != null)
-        input.value = ex;
+        selecta.value = ex;
 
     var labelsets = document.createElement('label');
     labelsets.setAttribute('for','sets');
@@ -86,7 +85,7 @@ function addEx(ex,s,r)
     deleteBtn.addEventListener('click', function(){ deleteEx(localcount); });
     deleteBtn.textContent = '-';
 
-    li.appendChild(input);
+    li.appendChild(selecta);
     li.appendChild(labelsets);
     li.appendChild(sets);
     li.appendChild(labelreps);
@@ -100,14 +99,6 @@ function addEx(ex,s,r)
 function deleteEx(id)
 {
     document.getElementById(id).remove();
-}
-
-function is_valid_datalist_value(idDataList, inputValue) {
-    var option = document.querySelector("#" + idDataList + " option[value='" + inputValue + "']");
-    if (option != null) {
-      return option.value.length > 0;
-    }
-    return false;
 }
 
 function addRot()
@@ -128,12 +119,6 @@ function addRot()
     var rot = [];
     for(var a = 0; a < lis.length; a++)
     {
-        if(!is_valid_datalist_value(datalist.id, document.getElementById('ex' + lis[a].id).value))
-        {
-            datatoast.className = "show";
-            setTimeout(function(){ datatoast.className = datatoast.className.replace("show", ""); }, 3000);
-            return;
-        }
         var ex = [];
         ex.push(document.getElementById('ex' + lis[a].id).value);
         ex.push(document.getElementById('sets' + lis[a].id).value);

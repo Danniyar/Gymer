@@ -29,6 +29,20 @@ var data = {};
 var startDelayTime = Date.now;
 var delayTime = '';
 
+if(localStorage.hasOwnProperty("settings"))
+    var settings = JSON.parse(localStorage.settings);
+else
+    var settings = {};
+
+if('record' in settings)
+{
+  delayBtn.value = settings['record'][0];
+  lengthBtn.value = settings['record'][1];
+}
+
+delayBtn.onchange = function(){ settingsChange(); };
+lengthBtn.onchange = function(){ settingsChange(); };
+
 cameraOptions.addEventListener("change", function(){ cameraSelect(); } );
 
 window.addEventListener("resize", (e) => {
@@ -95,6 +109,11 @@ function onResults(results) {
   drawLandmarks(canvasCtx, showLandmarks,
                 {color: '#FF0000', lineWidth: 2});
   canvasCtx.restore();
+}
+function settingsChange()
+{
+  settings['record'] = [delayBtn.value, lengthBtn.value];
+  localStorage.settings = JSON.stringify(settings);
 }
 function recPress()
 {

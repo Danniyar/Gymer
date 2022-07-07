@@ -30,6 +30,13 @@ for(const [key, value] of Object.entries(exercises)) {
 
 function delEx(key)
 {
+    if(localStorage.hasOwnProperty("records"))
+    {
+        var records = JSON.parse(localStorage.records);
+        if(key in records)
+            delete records[key];
+        localStorage.records = JSON.stringify(records);
+    }
     delete exercises[key];
     localStorage.exercises = JSON.stringify(exercises);
     document.location.reload();
