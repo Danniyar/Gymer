@@ -161,6 +161,16 @@ function skipPress()
   count++;
   nextEx();
 }
+function skipSetPress()
+{
+  sets.textContent = parseInt(sets.textContent)-1;
+  reps.textContent = defaultreps;
+  if(sets.textContent == 0)
+  {
+    count++;
+    nextEx();
+  }
+}
 function settingsChange()
 {
   settings['routines'][rotkey] = [delayBtn.value,resetCheck.checked,resetExCheck.checked];
