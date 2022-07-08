@@ -40,6 +40,19 @@ if('record' in settings)
   lengthBtn.value = settings['record'][1];
 }
 
+function findGetParameter(parameterName) {
+    var result = null, tmp = [];
+    location.search.substr(1).split("&").forEach(function (item) {
+        tmp = item.split("=");
+        if (tmp[0] === parameterName)
+            result = decodeURIComponent(tmp[1]);
+    });
+    return result;
+}
+var exkey = findGetParameter('ex')
+if(exkey != null)
+  exName.value = exkey;
+
 delayBtn.onchange = function(){ settingsChange(); };
 lengthBtn.onchange = function(){ settingsChange(); };
 

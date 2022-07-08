@@ -4,6 +4,7 @@ const container = document.getElementsByClassName('container')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
 const canvasCtx = canvasElement.getContext('2d');
 const exName = document.getElementById('exercise');
+const rotName = document.getElementById('routine');
 const reps = document.getElementById('reps');
 const sets = document.getElementById('sets');
 const delayBtn = document.getElementById('delay');
@@ -109,6 +110,7 @@ function nextEx()
         }
         pass.push(false);
       }
+      rotName.textContent = rotkey;
       exName.textContent = item[0];
       sets.textContent = item[1];
       reps.textContent = item[2];

@@ -7,6 +7,8 @@ else
 
 for(const [key, value] of Object.entries(exercises)) {
     var li = document.createElement("li");
+    li.setAttribute('class', 'ex');
+    li.addEventListener('click',function(){ window.location.href='./addExercise.html?ex=' + key;});
 
     var sep = document.createElement('input');
     sep.setAttribute('type','checkbox');
@@ -14,13 +16,15 @@ for(const [key, value] of Object.entries(exercises)) {
     sep.setAttribute('name','sep' + key);
     sep.checked = exercises[key][0];
     sep.onchange = function(){ change(key); };
+    sep.addEventListener('click', function(e){ e.stopPropagation(); } );
     var labelsep = document.createElement('label');
     labelsep.setAttribute('for','sep');
     labelsep.textContent = 'Count joints as separate rep     ';
 
     var delBtn = document.createElement("button");
     delBtn.textContent = "Delete";
-    delBtn.addEventListener('click', function(){ delEx(key); } );
+    delBtn.addEventListener('click', function(e){ e.stopPropagation(); delEx(key); } );
+
     li.textContent = key + '   ';
     li.appendChild(sep);
     li.appendChild(labelsep);

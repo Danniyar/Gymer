@@ -33,9 +33,7 @@ if(localStorage.hasOwnProperty("dailyRoutines"))
             document.getElementsByName(key)[0].value = value;
         else 
             saveRoutine(document.getElementsByName(key)[0]);
-        var startBtn = document.createElement('button');
-        startBtn.textContent = 'Start';
-        startBtn.addEventListener('click',function(){ window.location.href='./playRoutine.html?rot=' + value; });
-        document.getElementById(key).appendChild(startBtn);
+        document.getElementById(key).addEventListener('click',function(){ window.location.href='./playRoutine.html?rot=' + value;});
+        document.getElementsByName(key)[0].addEventListener('click', function(e){ e.stopPropagation(); });
     }
 }

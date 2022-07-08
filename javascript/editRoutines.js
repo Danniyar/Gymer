@@ -7,14 +7,12 @@ else
 
 for(const [key, value] of Object.entries(routines)) {
     var li = document.createElement("li");
-    var editBtn = document.createElement("button");
-    editBtn.textContent = "Edit";
-    editBtn.addEventListener('click', function(){ editRot(key); })
+    li.setAttribute('class','rot');
+    li.addEventListener('click', function(){ editRot(key); })
     var delBtn = document.createElement("button");
     delBtn.textContent = "Delete";
-    delBtn.addEventListener('click', function(){ delRot(key); } );
+    delBtn.addEventListener('click', function(e){e.stopPropagation(); delRot(key); } );
     li.textContent = key;
-    li.appendChild(editBtn);
     li.appendChild(delBtn);
     rot.appendChild(li);
 }

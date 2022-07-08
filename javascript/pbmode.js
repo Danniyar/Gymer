@@ -12,13 +12,11 @@ else
 
 for(const [key, value] of Object.entries(exercises)) {
     var li = document.createElement("li");
-    var playBtn = document.createElement("button");
-    playBtn.textContent = "Start";
-    playBtn.addEventListener('click', function(){ window.location.href='./playExercise.html?ex=' + key; } );
+    li.setAttribute('class', 'ex');
+    li.addEventListener('click', function(){ window.location.href='./playExercise.html?ex=' + key; } );
     var record = '0';
     if(records.hasOwnProperty(key))
         record = records[key];
     li.textContent = key + '( Current Record: ' + record + ' )     ';
-    li.appendChild(playBtn);
     ex.appendChild(li);
 }

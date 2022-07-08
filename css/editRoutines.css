@@ -1,0 +1,64 @@
+* {
+  background-color: black;
+}
+
+#routines {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+}
+
+.rot {
+  color:white;
+  padding: 14px 30px;
+  font-weight: 900;
+}
+.rot:hover {
+  background-color: rgb(0, 140, 255);
+}
+label {
+  color:white;
+  background-color: transparent;
+}
+button {
+  background-color: red;
+  color:black;
+  font-weight: 900;
+}
+button:hover {
+  color:white;
+}
+#addRot {
+  background-color: lime;
+}
+.editBtn {
+  background-color: rgb(0, 140, 255);
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+  }
+  
+  .navli {
+    float: left;
+  }
+  
+  .navli a {
+    display: block;
+    color: rgb(51, 255, 0);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  .navli a:hover {
+    background-color: rgb(47, 47, 47);
+    color:white;
+  }
