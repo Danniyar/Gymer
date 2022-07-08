@@ -24,6 +24,9 @@ input {
   color: white;
   font-weight: 900;
 }
+h2 {
+  color: white;
+}
 
 .overlay {
     position:fixed;
@@ -71,20 +74,21 @@ video {
   .formContainer {
     max-width: 300px;
     padding: 20px;
-    background-color: #fff;
+    background-color: black;
   }
   .formContainer .btn {
     padding: 12px 20px;
     border: none;
     background-color: #8ebf42;
-    color: #fff;
+    color: white;
     cursor: pointer;
     width: 100%;
     margin-bottom: 15px;
     opacity: 0.8;
   }
   .formContainer .cancel {
-    background-color: #cc0000;
+    background-color: red;
+    color: white;
     z-index: 16;
   }
 .info {
