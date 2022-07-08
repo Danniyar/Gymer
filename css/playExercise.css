@@ -24,6 +24,9 @@ input {
   color: white;
   font-weight: 900;
 }
+#pauseBtn {
+  background-color: lime;
+}
 
 .overlay {
     position:fixed;

@@ -144,6 +144,7 @@ function startRec()
   counting = false;
   recording = true;
   recBtn.textContent = "Stop";
+  recBtn.style.backgroundColor = 'red';
   startTime = Math.floor(Date.now()/100);
   prevTime = Math.floor(Date.now()/100);
   data = {};
@@ -151,6 +152,7 @@ function startRec()
 function stopRec()
 {
   recBtn.textContent = "Record";
+  recBtn.style.backgroundColor = 'lime';
   recording = false;
 }
 function addRec()

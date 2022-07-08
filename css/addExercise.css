@@ -24,6 +24,12 @@ input {
   color: white;
   font-weight: 900;
 }
+#addBtn {
+  background-color: rgb(0, 140, 255);
+}
+#recBtn {
+  background-color: lime;
+}
 
 .output_canvas {
     position: absolute;
