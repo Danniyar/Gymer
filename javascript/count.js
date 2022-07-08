@@ -121,6 +121,7 @@ function nextEx()
     if(resetExCheck.checked)
     {
       startBtn.textContent = 'Start';
+      startBtn.style.backgroundColor = 'lime';
       counting = false;
       dropdown = false;
     }

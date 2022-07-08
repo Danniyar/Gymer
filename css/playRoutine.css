@@ -27,6 +27,18 @@ input {
 h2 {
   color: white;
 }
+#setBtn {
+  color:gray;
+}
+#skipSetBtn {
+  color:gray;
+}
+#setBtn:hover {
+  color:white;
+}
+#skipSetBtn:hover {
+  color:white;
+}
 
 .overlay {
     position:fixed;
