@@ -258,6 +258,7 @@ function onResults(results) {
       if(resetCheck.checked)
       {
         startBtn.textContent = 'Start';
+        startBtn.style.backgroundColor = 'lime';
         counting = false;
       }
     }
