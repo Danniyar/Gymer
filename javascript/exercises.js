@@ -19,7 +19,7 @@ for(const [key, value] of Object.entries(exercises)) {
     sep.addEventListener('click', function(e){ e.stopPropagation(); } );
     var labelsep = document.createElement('label');
     labelsep.setAttribute('for','sep');
-    labelsep.textContent = 'Count joints as separate rep     ';
+    labelsep.textContent = 'Count joints separate     ';
 
     var delBtn = document.createElement("button");
     delBtn.textContent = "Delete";

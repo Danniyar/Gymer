@@ -21,16 +21,16 @@
         </form>
     </div>
     <div class="exdesc">
-        <label for="exercise" class="info" style="color:red;">Exercise: </label>
-        <i class="info" id="exercise" style="color:red; font-size:50px;">asd</i>
+        <label for="exercise" class="info" style="color:red; background-color: transparent;">Exercise: </label>
+        <i class="info" id="exercise" style="color:red; font-size:50px; background-color: transparent;">asd</i>
         <br>
-        <label for="sets" class="info" style="color:blue;">Sets: </label>
-        <i class="info" id="sets" style="color:blue; font-size:50px;">100</i>
-        <label for="reps" class="info" style="color:lime;">Reps: </label>
-        <i class="info" id="reps" style="color:lime; font-size:50px;">100</i>
+        <label for="sets" class="info" style="color:blue; background-color: transparent;">Sets: </label>
+        <i class="info" id="sets" style="color:blue; font-size:50px; background-color: transparent;">100</i>
+        <label for="reps" class="info" style="color:lime; background-color: transparent;">Reps: </label>
+        <i class="info" id="reps" style="color:lime; font-size:50px; background-color: transparent;">100</i>
         <br>
-        <label for="reps" class="info" style="color:yellow; font-size:25px;">Routine: </label>
-        <i class="info" id="routine" style="color:yellow; font-size:25px;">fgh</i>
+        <label for="reps" class="info" style="color:yellow; font-size:25px; background-color: transparent;">Routine: </label>
+        <i class="info" id="routine" style="color:yellow; font-size:25px; background-color: transparent;">fgh</i>
     </div>
     <div class="container">
         <video class="input_video" autoplay muted playsinline></video>
@@ -48,11 +48,11 @@
         <label for="resetset">Restart after every set</label>
         <input type="checkbox" id="resetex" checked>
         <label for="resetex">Restart after every exercise</label><br>
-        <button id="pauseBtn" onclick="startPress()">Start</button><br><br>
-        <button id="setBtn" onclick="setPress()">Restart Set</button>
+        <button id="pauseBtn" onclick="startPress()" style="background-color: lime;">Start</button><br><br>
+        <button id="setBtn" onclick="setPress()" style="background-color: blue; color: gray;">Restart Set</button>
         <button id="exBtn" onclick="exPress()">Restart Exercise</button><br><br>
     </div>
-    <button id="skipBtn" onclick="skipSetPress()">Skip Set</button>
+    <button id="skipBtn" onclick="skipSetPress()" style="background-color: blue; color: gray;">Skip Set</button>
     <button id="skipBtn" onclick="skipPress()">Skip Exercise</button><br><br>
 </body>
 </html>

@@ -59,6 +59,7 @@ function addEx(ex,s,r)
     var labelsets = document.createElement('label');
     labelsets.setAttribute('for','sets');
     labelsets.textContent = 'Sets:';
+    labelsets.setAttribute('class','sets');
     var sets = document.createElement('input');
     sets.setAttribute('type','number');
     sets.setAttribute('id','sets' + count);
@@ -71,6 +72,7 @@ function addEx(ex,s,r)
     var labelreps = document.createElement('label');
     labelreps.setAttribute('for','reps');
     labelreps.textContent = 'Reps:';
+    labelreps.setAttribute('class','reps');
     var reps = document.createElement('input');
     reps.setAttribute('type','number');
     reps.setAttribute('id','reps' + count);
@@ -83,7 +85,7 @@ function addEx(ex,s,r)
     var deleteBtn = document.createElement('button');
     var localcount = count;
     deleteBtn.addEventListener('click', function(){ deleteEx(localcount); });
-    deleteBtn.textContent = '-';
+    deleteBtn.textContent = 'Delete';
 
     li.appendChild(selecta);
     li.appendChild(labelsets);

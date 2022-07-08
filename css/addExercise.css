@@ -1,3 +1,30 @@
+* {
+  background-color: black;
+}
+label {
+  color:white;
+  background-color: transparent;
+  font-weight: 900;
+}
+button {
+  background-color: red;
+  color:black;
+  font-weight: 900;
+}
+button:hover {
+  color:white;
+}
+select {
+  background-color: rgb(37, 37, 37);
+  color: lime;
+  font-weight: 900;
+}
+input {
+  background-color: rgb(37, 37, 37);
+  color: white;
+  font-weight: 900;
+}
+
 .output_canvas {
     position: absolute;
     top: 0;
