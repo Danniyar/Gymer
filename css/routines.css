@@ -23,9 +23,9 @@ button:hover {
     color:white;
 }
 select {
-    color: black;
+    color: lime;
     font-weight: 900;
-    background-color: lime;
+    background-color: black;
 }
 
 .navbar {
