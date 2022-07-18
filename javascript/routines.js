@@ -26,14 +26,14 @@ function saveRoutine(object)
 }
 
 if(localStorage.hasOwnProperty("dailyRoutines"))
-{
     var dr = JSON.parse(localStorage.dailyRoutines);
-    for(const [key, value] of Object.entries(dr)) {
-        if(value in routines)
-            document.getElementsByName(key)[0].value = value;
-        else 
-            saveRoutine(document.getElementsByName(key)[0]);
-        document.getElementById(key).addEventListener('click',function(){ window.location.href='./playRoutine.html?rot=' + value;});
-        document.getElementsByName(key)[0].addEventListener('click', function(e){ e.stopPropagation(); });
-    }
+else
+    var dr = {'monday': '', 'tuesday': '', 'wednesday': '', 'thursday': '', 'friday': '', 'saturday': '', 'sunday': ''};
+for(const [key, value] of Object.entries(dr)) {
+    if(value in routines)
+        document.getElementsByName(key)[0].value = value;
+    else 
+        saveRoutine(document.getElementsByName(key)[0]);
+    document.getElementById(key).addEventListener('click',function(){ window.location.href='./playRoutine.html?rot=' + value;});
+    document.getElementsByName(key)[0].addEventListener('click', function(e){ e.stopPropagation(); });
 }
