@@ -25,6 +25,7 @@ var defaultreps = 0;
 var defaultsets = 0;
 var sessionTime = Date.now();
 var finished = false;
+var stat = [];
 
 if(localStorage.hasOwnProperty("exercises"))
     var exercises = JSON.parse(localStorage.exercises);
@@ -37,6 +38,14 @@ else
 {
     var settings = {};
     settings['routines'] = {};
+}
+
+if(localStorage.hasOwnProperty("stats"))
+    var stats = JSON.parse(localStorage.stats);
+else
+{
+    var stats = {};
+    stats = {};
 }
 
 function findGetParameter(parameterName) {
@@ -82,6 +91,15 @@ function nextEx()
       if(minutes < 10)
         minutes = '0' + minutes;
       document.getElementById('sessionTime').textContent = "Session Time: " + hours + ":" + minutes + ":" + seconds;
+
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      today = dd + '/' + mm + '/' + yyyy;
+      stats[today] = [rotkey, stat, time];
+      localStorage.stats = JSON.stringify(stats);
+
       openTheForm();
       return;
     }
@@ -117,6 +135,8 @@ function nextEx()
       separate = exercises[item[0]][0];
       defaultsets = item[1];
       defaultreps = item[2];
+
+      stat.push([item[0], 0]);
     }
     if(resetExCheck.checked)
     {
@@ -154,11 +174,13 @@ function startPress()
 function setPress()
 {
   reps.textContent = defaultreps;
+  stat[stat.length-1][1] = (defaultsets-sets.textContent)*defaultreps;
 }
 function exPress()
 {
   sets.textContent = defaultsets;
   reps.textContent = defaultreps;
+  stat[stat.length-1][1] = 0;
 }
 function skipPress()
 {
@@ -263,6 +285,7 @@ function onResults(results) {
         counting = false;
       }
     }
+    stat[stat.length-1][1] += 1;
     if(sets.textContent == 0)
     {
       count++;
