@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gymer</title>
-    <link href="./css/exercises.css" type="text/css" rel="stylesheet">
+    <link href="./css/stats.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <ul class="navbar">
@@ -15,10 +15,13 @@
         <li class="navli"> <a href = "./pbmode.html">Personal Best Mode</a> </li>
         <li class="navli"> <a href = "./stats.html">Stats</a> </li>
     </ul>
-    <ul id="exercises">
+    <br>
+    <label id="allTime"></label>
+    <ul id="stats">
         
     </ul>
-    <button id="addEx" onclick="window.location.href='./addExercise.html'">Add Exercise</button>
+    <br>
+    <button onclick="reset()">Reset Stats</button>
 </body>
 </html>
-<script src="./javascript/exercises.js"></script>
+<script src="./javascript/stats.js"></script>

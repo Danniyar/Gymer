@@ -43,10 +43,7 @@ else
 if(localStorage.hasOwnProperty("stats"))
     var stats = JSON.parse(localStorage.stats);
 else
-{
     var stats = {};
-    stats = {};
-}
 
 function findGetParameter(parameterName) {
     var result = null, tmp = [];
@@ -93,10 +90,12 @@ function nextEx()
       document.getElementById('sessionTime').textContent = "Session Time: " + hours + ":" + minutes + ":" + seconds;
 
       var today = new Date();
+      var m = today.getMinutes();
+      var hh = today.getHours();
       var dd = String(today.getDate()).padStart(2, '0');
       var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = today.getFullYear();
-      today = dd + '/' + mm + '/' + yyyy;
+      today = dd + '/' + mm + '/' + yyyy + ' - ' + hh + ":" + m;
       stats[today] = [rotkey, stat, time];
       localStorage.stats = JSON.stringify(stats);
 
