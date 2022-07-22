@@ -17,9 +17,11 @@ noUiSlider.create(slider, {
         'max': Object.keys(stats).length-1
     }
 });
+
 slider.noUiSlider.on('update.one', function () { 
     var val = slider.noUiSlider.get();
-    document.getElementById('period').textContent = "Time Period: " + Object.keys(stats)[parseInt(val[0])] + '   -   ' +  Object.keys(stats)[parseInt(val[1])];
+    if(Object.keys(stats).length > 0)
+        document.getElementById('period').textContent = "Time Period: " + Object.keys(stats)[parseInt(val[0])] + '   -   ' +  Object.keys(stats)[parseInt(val[1])];
 });
 
 function apply()
@@ -119,4 +121,5 @@ function reset()
     document.location.reload();
 }
 
-apply();
+if(Object.keys(stats).length > 0)
+    apply();

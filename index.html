@@ -8,6 +8,17 @@
     <link href="./css/index.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+    <div class="overlay"></div>
+    <div class="formPopup" id="popupForm">
+        <form class="formContainer">
+            <button type="button" class="btn cancel" onclick="closeform()">X</button>
+            <h2 style="color:white;"> 1. Go to Exercises, and record reps of your exercises.</h2>
+            <h2 style="color:red;"> 2. Go to Routines, click on Edit Routines, and then Add Routine. </h2>
+            <h2 style="color:cyan;"> 3. Add exercises with sets and reps, name your routine and add it. </h2>
+            <h2 style="color:yellow;"> 4. Go back to Routines, and select your routine in days of the week. </h2>
+            <h2 style="color:lime;"> 5. Click on your routine. </h2>
+        </form>
+    </div>
     <ul class="navbar">
         <li class="navli"> <a href = "./index.html">Home</a> </li>
         <li class="navli"> <a href = "./routines.html">Routines</a> </li>
@@ -22,6 +33,8 @@
     </form><br>
     <label for="export">Export: </label>
     <button onclick="download()" id="export">Export</button>
+    <br><br>
+    <button onclick="openform()" id="tutorial" style="background-color:deeppink;">How To Use</button>
     <br><br>
     <div>TIME TO GRIND!!!!!!!</div>
 </body>

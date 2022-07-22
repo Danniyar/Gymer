@@ -39,3 +39,11 @@ const download = () => (
     }).click()
   )
 
+function openform() {
+  document.getElementById("popupForm").style.display = "block";
+  document.getElementsByClassName("overlay")[0].style.display = "block";
+}
+function closeform() {
+  document.getElementById("popupForm").style.display = "none";
+  document.getElementsByClassName("overlay")[0].style.display = "none";
+}

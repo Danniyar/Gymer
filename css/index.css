@@ -40,3 +40,54 @@ button:hover {
     background-color: rgb(47, 47, 47);
     color:white;
   }
+
+  * {
+    box-sizing: border-box;
+  }
+  .formPopup {
+    display: none;
+    position: fixed;
+    left: 45%;
+    top: 5%;
+    transform: translate(-50%, 5%);
+    border: 3px solid #999999;
+    z-index: 15;
+  }
+  .formContainer {
+    max-width: 300px;
+    padding: 20px;
+    background-color: black;
+  }
+  .formContainer .btn {
+    padding: 12px 20px;
+    border: none;
+    background-color: #8ebf42;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 15px;
+    opacity: 0.8;
+  }
+  .formContainer .cancel {
+    background-color: red;
+    color: white;
+    z-index: 16;
+    line-height: 12px;
+    width: 12px;
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    top:0;
+    left:0;
+  }
+  .overlay {
+    position:fixed;
+    left:0;
+    top:0;
+    width:100vw;
+    height:100vh;
+    display:none;
+    background-color:#000;
+    opacity:0.5;
+    z-index: 5;
+}
