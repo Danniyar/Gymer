@@ -30,6 +30,9 @@ button {
 button:hover {
     color:white;
 }
+#slider .noUi-connect {
+    background-color: blue;
+}
 
 .navbar {
     list-style-type: none;

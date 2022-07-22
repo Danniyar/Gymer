@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gymer</title>
     <link href="./css/stats.css" type="text/css" rel="stylesheet">
+    <link href="./css/nouislider.min.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+    <script src="./javascript/nouislider.min.js"></script>
     <ul class="navbar">
         <li class="navli"> <a href = "./index.html">Home</a> </li>
         <li class="navli"> <a href = "./routines.html">Routines</a> </li>
@@ -16,12 +18,21 @@
         <li class="navli"> <a href = "./stats.html">Stats</a> </li>
     </ul>
     <br>
+    <label id="period">Time Period: - </label><br>
+    <br>
+    <div id="slider"></div>
+    <br>
+    <button onclick="apply()" style="background-color:lime">Apply</button><br>
+    <br>
     <label id="allTime"></label>
+    <br>
+    <label id="allReps" style="color:lime;">Overall Reps: | |</label>
+    <br>
     <ul id="stats">
         
     </ul>
     <br>
-    <button onclick="reset()">Reset Stats</button>
+    <button onclick="reset()">Reset Stats</button><br>
 </body>
 </html>
 <script src="./javascript/stats.js"></script>
