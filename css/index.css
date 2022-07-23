@@ -55,6 +55,8 @@ button:hover {
   }
   .formContainer {
     max-width: 300px;
+    max-height: 400px;
+    overflow-y: scroll; 
     padding: 20px;
     background-color: black;
   }
