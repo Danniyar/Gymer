@@ -90,8 +90,8 @@ function nextEx()
       document.getElementById('sessionTime').textContent = "Session Time: " + hours + ":" + minutes + ":" + seconds;
 
       var today = new Date();
-      var m = today.getMinutes();
-      var hh = today.getHours();
+      var m = String(today.getMinutes()).padStart(2, '0');
+      var hh = String(today.getHours()).padStart(2, '0');
       var dd = String(today.getDate()).padStart(2, '0');
       var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
       var yyyy = today.getFullYear();
