@@ -12,11 +12,11 @@
     <div class="formPopup" id="popupForm">
         <form class="formContainer">
             <button type="button" class="btn cancel" onclick="closeform()">X</button>
-            <h2 style="color:white;"> 1. Go to Exercises, and record reps of your exercises.</h2>
-            <h2 style="color:red;"> 2. Go to Routines, click on Edit Routines, and then Add Routine. </h2>
-            <h2 style="color:cyan;"> 3. Add exercises with sets and reps, name your routine and add it. </h2>
-            <h2 style="color:yellow;"> 4. Go back to Routines, and select your routine in days of the week. </h2>
-            <h2 style="color:lime;"> 5. Click on your routine. </h2>
+            <h2 style="color:rgb(255, 255, 255); background-color: rgb(122, 122, 122);"> 1. Go to Exercises, and record reps of your exercises.</h2>
+            <h2 style="color:rgb(255, 255, 255); background-color: rgb(163, 64, 64);"> 2. Go to Routines, click on Edit Routines, and then Add Routine. </h2>
+            <h2 style="color:rgb(255, 255, 255); background-color: rgb(62, 168, 168);"> 3. Add exercises with sets and reps, name your routine and add it. </h2>
+            <h2 style="color:rgb(255, 255, 255); background-color: rgb(190, 190, 58);"> 4. Go back to Routines, and select your routine in days of the week. </h2>
+            <h2 style="color:rgb(255, 255, 255); background-color: rgb(53, 156, 53);"> 5. Click on your routine. </h2>
         </form>
     </div>
     <ul class="navbar">
@@ -27,16 +27,14 @@
         <li class="navli"> <a href = "./stats.html">Stats</a> </li>
     </ul>
     <br>
-    <form id="import">
-        <label for="file">Import: </label>
+    <button onclick="openform()" id="tutorial">How To Use</button>
+    <br><br>
+    <label id="import">
         <input type="file" id="file" accept=".json">
-    </form><br>
-    <label for="export">Export: </label>
+        Import
+    </label><br><br>
     <button onclick="download()" id="export">Export</button>
     <br><br>
-    <button onclick="openform()" id="tutorial" style="background-color:deeppink;">How To Use</button>
-    <br><br>
-    <div>TIME TO GRIND!!!!!!!</div>
 </body>
 </html>
 <script src="./javascript/index.js" defer></script>

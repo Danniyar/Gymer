@@ -1,5 +1,5 @@
 * {
-  background-color: black;
+  background-color: rgb(34, 37, 46);;
 }
 
 ul {
@@ -20,11 +20,11 @@ input {
   font-weight: 900;
 }
 .sets {
-  color: blue;
+  color: rgb(0, 92, 167);
   font-weight: 900;
 }
 .reps {
-  color: lime;
+  color: rgb(53, 156, 53);
   font-weight: 900;
 }
 
@@ -32,9 +32,10 @@ input {
   color:white;
   padding: 14px 30px;
   font-weight: 900;
+  transition: 0.25s;
 }
 .li:hover {
-  background-color: rgb(0, 140, 255);
+  background-color: rgb(0, 92, 167);
 }
 label {
   color:white;
@@ -42,18 +43,21 @@ label {
   font-weight: 900;
 }
 button {
-  background-color: red;
-  color:black;
+  background-color: rgb(163, 64, 64);;
+  color:white;
   font-weight: 900;
+  transition: 0.25s;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }
 button:hover {
   color:white;
 }
 #addBtn {
-  background-color: rgb(0, 140, 255);
+  background-color: rgb(0, 92, 167);
 }
 #addEx {
-  background-color: lime;
+  background-color: rgb(53, 156, 53);
 }
 
 #namesnackbar, #datasnackbar, #exsnackbar {

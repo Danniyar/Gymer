@@ -1,5 +1,5 @@
 * {
-  background-color: black;
+  background-color: rgb(34, 37, 46);;
 }
 label {
   color:white;
@@ -10,6 +10,9 @@ button {
   background-color: red;
   color:black;
   font-weight: 900;
+  transition: 0.25s;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }
 button:hover {
   color:white;
@@ -99,7 +102,7 @@ video {
     opacity: 0.8;
   }
   .formContainer .cancel {
-    background-color: red;
+    background-color: rgb(163, 64, 64);
     color: white;
     z-index: 16;
   }

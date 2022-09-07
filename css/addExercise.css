@@ -1,5 +1,5 @@
 * {
-  background-color: black;
+  background-color: rgb(34, 37, 46);;
 }
 label {
   color:white;
@@ -8,8 +8,11 @@ label {
 }
 button {
   background-color: red;
-  color:black;
+  color:white;
   font-weight: 900;
+  transition: 0.25s;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }
 button:hover {
   color:white;
@@ -25,10 +28,11 @@ input {
   font-weight: 900;
 }
 #addBtn {
-  background-color: rgb(0, 140, 255);
+  background-color: rgb(0, 92, 167);
 }
 #recBtn {
   background-color: lime;
+  color: black;
 }
 
 .output_canvas {
