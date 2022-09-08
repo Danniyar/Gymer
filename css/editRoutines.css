@@ -1,5 +1,5 @@
 * {
-  background-color: rgb(34, 37, 46);;
+  background-color: rgb(34, 37, 46);
 }
 
 #routines {
@@ -23,7 +23,7 @@ label {
   background-color: transparent;
 }
 button {
-  background-color: rgb(163, 64, 64);;
+  background-color: rgb(163, 64, 64);
   color:white;
   font-weight: 900;
   transition: 0.25s;
@@ -34,7 +34,7 @@ button:hover {
   color:white;
 }
 #addRot {
-  background-color: rgb(53, 156, 53);;
+  background-color: rgb(53, 156, 53);
 }
 .editBtn {
   background-color: rgb(0, 92, 167);

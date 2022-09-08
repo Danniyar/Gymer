@@ -1,5 +1,5 @@
 * {
-    background-color: rgb(34, 37, 46);;
+    background-color: rgb(34, 37, 46);
 }
 
 #exercises {
@@ -22,7 +22,7 @@ label {
     background-color: transparent;
 }
 button {
-    background-color: rgb(163, 64, 64);;
+    background-color: rgb(163, 64, 64);
     color:white;
     font-weight: 900;
     transition: 0.25s;
@@ -33,7 +33,7 @@ button:hover {
     color:white;
 }
 #addEx {
-    background-color: rgb(53, 156, 53);;
+    background-color: rgb(53, 156, 53);
 }
 
 .navbar {

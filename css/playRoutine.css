@@ -1,5 +1,5 @@
 * {
-  background-color: rgb(34, 37, 46);;
+  background-color: rgb(34, 37, 46);
 }
 label {
   color:white;
@@ -89,7 +89,7 @@ video {
   .formContainer {
     max-width: 300px;
     padding: 20px;
-    background-color: black;
+    background-color: rgb(34, 37, 46);
   }
   .formContainer .btn {
     padding: 12px 20px;
