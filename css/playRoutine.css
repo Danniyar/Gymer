@@ -31,9 +31,11 @@ h2 {
   color: white;
 }
 #setBtn {
+  transition: 0.25s;
   color:gray;
 }
 #skipSetBtn {
+  transition: 0.25s;
   color:gray;
 }
 #setBtn:hover {
