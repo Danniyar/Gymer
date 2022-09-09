@@ -34,8 +34,8 @@ function apply()
     var alltime = 0;
     var reps = {};
     
-    for(var i = parseInt(val[0]); i < parseInt(val[1])+1; i++) {
-        var key = s[i][0];
+    for(var i = parseInt(val[1]); i >= parseInt(val[0]); i--) {
+        const key = s[i][0];
         var value = s[i][1];
 
         var rotname = value[0];
