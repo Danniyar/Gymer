@@ -17,12 +17,12 @@ for(const [key, value] of Object.entries(exercises)) {
     var record = '0';
     if(records.hasOwnProperty(key))
         record = records[key];
-    li.style.color = 'cyan';
+    li.style.color = 'rgb(62, 168, 168)';
     li.textContent = key;
 
     var rec = document.createElement('label');
     rec.textContent = " Current Record: " + record;
-    rec.style.color = 'yellow';
+    rec.style.color = 'rgb(211, 211, 67)';
 
     li.appendChild(rec);
 

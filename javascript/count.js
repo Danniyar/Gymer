@@ -140,7 +140,7 @@ function nextEx()
     if(resetExCheck.checked)
     {
       startBtn.textContent = 'Start';
-      startBtn.style.backgroundColor = 'lime';
+      startBtn.style.backgroundColor = 'rgb(53, 156, 53)';
       counting = false;
       dropdown = false;
     }
@@ -161,12 +161,12 @@ function startPress()
   {
     dropdown = true;
     startDelayTime = Date.now();
-    setTimeout(function(){ counting = true; dropdown = false; startBtn.textContent = 'Stop'; startBtn.style.backgroundColor = 'red';}, parseFloat(delayBtn.value)*1000);
+    setTimeout(function(){ counting = true; dropdown = false; startBtn.textContent = 'Stop'; startBtn.style.backgroundColor = 'rgb(163, 64, 64)';}, parseFloat(delayBtn.value)*1000);
   }
   else
   {
     startBtn.textContent = 'Start';
-    startBtn.style.backgroundColor = 'lime';
+    startBtn.style.backgroundColor = 'rgb(53, 156, 53)';
     counting = false;
   }
 }
@@ -280,7 +280,7 @@ function onResults(results) {
       if(resetCheck.checked)
       {
         startBtn.textContent = 'Start';
-        startBtn.style.backgroundColor = 'lime';
+        startBtn.style.backgroundColor = 'rgb(53, 156, 53)';
         counting = false;
       }
     }

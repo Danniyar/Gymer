@@ -9,7 +9,7 @@ for(const [key, value] of Object.entries(routines)) {
     var li = document.createElement("li");
     li.setAttribute('class','rot');
     li.addEventListener('click', function(){ editRot(key); })
-    li.style.color = 'yellow';
+    li.style.color = 'rgb(211, 211, 67)';
     var delBtn = document.createElement("button");
     delBtn.textContent = "Delete";
     delBtn.addEventListener('click', function(e){e.stopPropagation(); delRot(key); } );

@@ -47,11 +47,11 @@ function apply()
 
         var info = document.createElement('label');
         info.textContent = key + "   ";
-        info.style.color = 'yellow';
+        info.style.color = 'rgb(211, 211, 67)';
 
         var nm = document.createElement('label');
         nm.textContent = rotname + "   ";
-        nm.style.color = 'cyan';
+        nm.style.color = 'rgb(62, 168, 168)';
 
         var tm = document.createElement('label');
         var hours = Math.floor(time/3600);
@@ -75,7 +75,7 @@ function apply()
             else 
                 reps[exs[a][0]] = exs[a][1];
         }
-        ex.style.color = 'lime';
+        ex.style.color = 'rgb(53, 156, 53)';
 
         var delBtn = document.createElement("button");
         delBtn.textContent = "Delete";

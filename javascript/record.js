@@ -144,7 +144,7 @@ function startRec()
   counting = false;
   recording = true;
   recBtn.textContent = "Stop";
-  recBtn.style.backgroundColor = 'red';
+  recBtn.style.backgroundColor = 'rgb(163, 64, 64)';
   startTime = Math.floor(Date.now()/100);
   prevTime = Math.floor(Date.now()/100);
   data = {};
@@ -152,7 +152,7 @@ function startRec()
 function stopRec()
 {
   recBtn.textContent = "Record";
-  recBtn.style.backgroundColor = 'lime';
+  recBtn.style.backgroundColor = 'rgb(53, 156, 53)';
   recording = false;
 }
 function addRec()
@@ -192,13 +192,13 @@ function joint_clicked(btn, id)
 {
   if(btn.textContent == "+" && !recording)
   {
-    btn.style.background = "lime";
+    btn.style.background = "rgb(53, 156, 53)";
     btn.textContent = "-";
     ids.push(id);
   }
   else if(!recording)
   {
-    btn.style.background = "red";
+    btn.style.background = "rgb(163, 64, 64)";
     btn.textContent = "+";
     ids = ids.filter(function(e) { return e[1] !== id[1] });
   }

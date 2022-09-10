@@ -9,7 +9,7 @@ for(const [key, value] of Object.entries(exercises)) {
     var li = document.createElement("li");
     li.setAttribute('class', 'ex');
     li.addEventListener('click',function(){ window.location.href='./addExercise.html?ex=' + key;});
-    li.style.color = 'cyan';
+    li.style.color = 'rgb(62, 168, 168)';
 
     var sep = document.createElement('input');
     sep.setAttribute('type','checkbox');
