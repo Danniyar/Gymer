@@ -27,7 +27,7 @@ button:hover {
     color:white;
 }
 select {
-    color: yellow;
+    color: rgb(211, 211, 67);
     font-weight: 900;
     background-color: rgb(41, 44, 54);
 }

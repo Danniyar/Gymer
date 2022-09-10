@@ -7,7 +7,7 @@ label {
   font-weight: 900;
 }
 button {
-  background-color: red;
+  background-color: rgb(163, 64, 64);
   color:black;
   font-weight: 900;
   transition: 0.25s;
@@ -19,7 +19,7 @@ button:hover {
 }
 select {
   background-color: rgb(37, 37, 37);
-  color: lime;
+  color: rgb(53, 156, 53);
   font-weight: 900;
 }
 input {
@@ -32,11 +32,11 @@ h2 {
 }
 #setBtn {
   transition: 0.25s;
-  color:gray;
+  color:black;
 }
 #skipSetBtn {
   transition: 0.25s;
-  color:gray;
+  color:black;
 }
 #setBtn:hover {
   color:white;
@@ -110,9 +110,5 @@ video {
   }
 .info {
   font-size:50px;
-  text-shadow:
-        0.07em 0 black,
-        0 0.07em black,
-        -0.07em 0 black,
-        0 -0.07em black;
+  text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
 }

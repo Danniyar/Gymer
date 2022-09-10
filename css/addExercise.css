@@ -7,7 +7,7 @@ label {
   font-weight: 900;
 }
 button {
-  background-color: red;
+  background-color: rgb(163, 64, 64);
   color:white;
   font-weight: 900;
   transition: 0.25s;
@@ -19,7 +19,7 @@ button:hover {
 }
 select {
   background-color: rgb(37, 37, 37);
-  color: lime;
+  color: rgb(53, 156, 53);
   font-weight: 900;
 }
 input {
@@ -31,8 +31,12 @@ input {
   background-color: rgb(0, 92, 167);
 }
 #recBtn {
-  background-color: lime;
+  background-color: rgb(53, 156, 53);
+  transition: 0.25s;
   color: black;
+}
+#recBtn:hover {
+  color:white;
 }
 
 .output_canvas {
@@ -60,7 +64,7 @@ img {
     position: absolute; 
     bottom: 10%;
     left: 5%;
-    background-color: red;
+    background-color: rgb(163, 64, 64);
 }
 .options {
     position: relative;
