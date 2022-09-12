@@ -1,5 +1,6 @@
 * {
     background-color: rgb(34, 37, 46);
+    font-size: 1vw;
 }
 
 #exercises {
@@ -15,7 +16,7 @@
     padding: 14px 30px;
     font-weight: 900;
     transition: 0.25s;
-    font-size: 125%;
+    font-size: 1vw;
 }
 .ex:hover {
     background-color: rgb(0, 92, 167);
@@ -23,6 +24,7 @@
 label {
     color:white;
     background-color: transparent;
+    font-size: 1vw;
 }
 button {
     background-color: rgb(163, 64, 64);
@@ -39,8 +41,9 @@ button:hover {
     background-color: rgb(53, 156, 53);
 }
 tr {
-    font-size: 125%;
+    font-size: 1vw;
     color:white;
+    font-size: 1vw;
 }
 h2 {
     color:white;
