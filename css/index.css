@@ -6,6 +6,10 @@ label {
     color:white;
     font-weight: 900;
 }
+h2 {
+  color:white;
+  font-weight: 900;
+}
 button {
     background-color: rgb(40, 44, 54);
     color:rgb(255, 255, 255);

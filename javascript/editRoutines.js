@@ -6,16 +6,31 @@ else
     var routines = {};
 
 for(const [key, value] of Object.entries(routines)) {
-    var li = document.createElement("li");
-    li.setAttribute('class','rot');
-    li.addEventListener('click', function(){ editRot(key); })
-    li.style.color = 'rgb(211, 211, 67)';
+    var tr = document.createElement("tr");
+    var th = document.createElement("th");
+    th.setAttribute('class','rot');
+    var editBtn = document.createElement('button');
+    editBtn.textContent = "Edit";
+    editBtn.addEventListener('click', function(){ editRot(key); })
+    th.style.color = 'rgb(211, 211, 67)';
+
     var delBtn = document.createElement("button");
     delBtn.textContent = "Delete";
     delBtn.addEventListener('click', function(e){e.stopPropagation(); delRot(key); } );
-    li.textContent = key;
-    li.appendChild(delBtn);
-    rot.appendChild(li);
+    editBtn.style = "width:100%; height:100%;";
+    delBtn.style = "width:100%; height:100%;";
+    editBtn.style.backgroundColor = "rgb(0, 92, 167)";
+
+    th.textContent = key;
+
+    var td = document.createElement("td");
+    td.appendChild(editBtn);
+    td.appendChild(delBtn);
+
+    tr.appendChild(th);
+    tr.appendChild(td);
+
+    rot.appendChild(tr);
 }
 
 function delRot(key)

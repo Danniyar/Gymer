@@ -10,10 +10,12 @@
     background-color: rgb(255, 255, 255);
 }
 .ex {
+    text-align: center;
     color:white;
     padding: 14px 30px;
     font-weight: 900;
     transition: 0.25s;
+    font-size: 125%;
 }
 .ex:hover {
     background-color: rgb(0, 92, 167);
@@ -35,6 +37,14 @@ button:hover {
 }
 #addEx {
     background-color: rgb(53, 156, 53);
+}
+tr {
+    font-size: 125%;
+    color:white;
+}
+h2 {
+    color:white;
+    font-weight: 900;
 }
 
 .navbar {

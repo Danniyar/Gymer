@@ -6,10 +6,15 @@ else
     var exercises = {};
 
 for(const [key, value] of Object.entries(exercises)) {
-    var li = document.createElement("li");
-    li.setAttribute('class', 'ex');
-    li.addEventListener('click',function(){ window.location.href='./addExercise.html?ex=' + key;});
-    li.style.color = 'rgb(62, 168, 168)';
+    var tr = document.createElement("tr");
+    var th = document.createElement("th");
+    th.setAttribute('class','ex');
+    var editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.addEventListener('click',function(){ window.location.href='./addExercise.html?ex=' + key;});
+    editBtn.style = "width:100%; height:100%;";
+    editBtn.style.backgroundColor = "rgb(0, 92, 167)";
+    th.style.color = 'rgb(62, 168, 168)';
 
     var sep = document.createElement('input');
     sep.setAttribute('type','checkbox');
@@ -18,19 +23,24 @@ for(const [key, value] of Object.entries(exercises)) {
     sep.checked = exercises[key][0];
     sep.onchange = function(){ change(key); };
     sep.addEventListener('click', function(e){ e.stopPropagation(); } );
-    var labelsep = document.createElement('label');
-    labelsep.setAttribute('for','sep');
-    labelsep.textContent = 'Count joints separate     ';
+    var labelsep = document.createElement('th');
+    labelsep.appendChild(sep);
+    labelsep.setAttribute('class', 'ex');
 
+    var button = document.createElement("td");
+    button.setAttribute('class','ex');
     var delBtn = document.createElement("button");
     delBtn.textContent = "Delete";
     delBtn.addEventListener('click', function(e){ e.stopPropagation(); delEx(key); } );
+    delBtn.style = "width:100%; height:100%;";
+    button.appendChild(editBtn);
+    button.appendChild(delBtn);
 
-    li.textContent = key + '   ';
-    li.appendChild(sep);
-    li.appendChild(labelsep);
-    li.appendChild(delBtn);
-    ex.appendChild(li);
+    th.textContent = key + '   ';
+    tr.appendChild(th);
+    tr.appendChild(labelsep);
+    tr.appendChild(button);
+    ex.appendChild(tr);
 }
 
 function delEx(key)

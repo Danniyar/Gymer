@@ -2,12 +2,13 @@
   background-color: rgb(34, 37, 46);
 }
 
-ul {
+#exercs {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: rgb(255, 255, 255);
+  font-size: 125%;
 }
 select {
   background-color: rgb(37, 37, 37);
@@ -28,19 +29,21 @@ input {
   font-weight: 900;
 }
 
-.li {
+.ex, .sets, .reps, td {
   color:white;
   padding: 14px 30px;
   font-weight: 900;
   transition: 0.25s;
+  text-align: center;
 }
-.li:hover {
+.ex:hover, .sets:hover, .reps:hover, td:hover {
   background-color: rgb(0, 92, 167);
 }
 label {
   color:white;
   background-color: transparent;
   font-weight: 900;
+  font-size: 125%;
 }
 button {
   background-color: rgb(163, 64, 64);;

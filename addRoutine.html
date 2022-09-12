@@ -8,17 +8,24 @@
     <link href="./css/addRoutine.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    <ul id="exercs">
-        
-    </ul>
+    <table style="width:60%" id="exercs">
+        <tr>
+          <th style="color:white;">Exercise</th>
+          <th style="color:rgb(0, 92, 167);">Sets</th>
+          <th style="color:rgb(53, 156, 53);">Reps</th>
+          <th style="color:white;">Action</th>
+        </tr>
+      </table>
+    <br>
     <button id="addEx" onclick="addEx()">+</button><br><br>
-    <label for="rotname" style="color:rgb(211, 211, 67);">Routine name:</label>
+    <label for="rotname" style="color:rgb(211, 211, 67);">Routine Name:</label>
     <input type="text" id="rotname" name="rotname"><br>
+    <br>
     <button id="addBtn" onclick="addRot()">Add Routine</button>
     
-    <div id="namesnackbar">Enter routine name</div>
-    <div id="datasnackbar">Enter valid exercises name</div>
-    <div id="exsnackbar">Add exercises</div>
+    <div id="namesnackbar">Enter Routine Name</div>
+    <div id="datasnackbar">Enter Valid Exercises Name</div>
+    <div id="exsnackbar">Add Exercises</div>
 </body>
 </html>
 <script src="./javascript/addRoutine.js" defer></script>

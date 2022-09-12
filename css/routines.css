@@ -1,12 +1,28 @@
 * {
     background-color: rgb(34, 37, 46);
 }
-
+tr {
+    color:white;
+    font-size: 125%;
+}
+h2 {
+    color:white;
+    font-weight: 900;
+}
+#routines {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+}
 .ex {
     color:white;
+    text-align: center;
     padding: 14px 30px;
     font-weight: 900;
     transition: 0.25s;
+    font-size: 125%;
 }
 .ex:hover {
     background-color: rgb(0, 92, 167);
@@ -16,7 +32,7 @@ label {
     background-color: transparent;
 }
 button {
-    background-color: rgb(163, 64, 64);
+    background-color: rgb(53, 156, 53);
     color:white;
     font-weight: 900;
     transition: 0.25s;

@@ -52,6 +52,10 @@ img {
      /* Magic! */
     max-width: 50vw;
 }
+h2 {
+  color:white;
+  font-weight: 900;
+}
 .bodyparts {
     position: relative;
     width: 50%;

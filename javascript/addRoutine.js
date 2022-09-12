@@ -42,11 +42,13 @@ function addEx(ex,s,r)
     ex = ex || null;
     s = s || 1;
     r = r || 1;
-    var li = document.createElement('li');
+    var tr = document.createElement('tr');
 
+    var th = document.createElement("th");
     var selecta = document.createElement('select');
-    selecta.setAttribute('class', 'ex');
+    th.setAttribute('class', 'ex');
     selecta.setAttribute('id', 'ex' + count);
+    th.appendChild(selecta)
     for(const [key, value] of Object.entries(exercises)) {
         var option = document.createElement('option');
         option.value = key;
@@ -56,9 +58,7 @@ function addEx(ex,s,r)
     if(ex != null)
         selecta.value = ex;
 
-    var labelsets = document.createElement('label');
-    labelsets.setAttribute('for','sets');
-    labelsets.textContent = 'Sets:';
+    var labelsets = document.createElement('th');
     labelsets.setAttribute('class','sets');
     var sets = document.createElement('input');
     sets.setAttribute('type','number');
@@ -68,10 +68,9 @@ function addEx(ex,s,r)
     sets.setAttribute('min','1');
     sets.setAttribute('step','1');
     sets.setAttribute("oninput","validity.valid||(value='');");
+    labelsets.appendChild(sets);
 
-    var labelreps = document.createElement('label');
-    labelreps.setAttribute('for','reps');
-    labelreps.textContent = 'Reps:';
+    var labelreps = document.createElement('th');
     labelreps.setAttribute('class','reps');
     var reps = document.createElement('input');
     reps.setAttribute('type','number');
@@ -81,20 +80,22 @@ function addEx(ex,s,r)
     reps.setAttribute('min','1');
     reps.setAttribute('step','1');
     reps.setAttribute("oninput","validity.valid||(value='');");
+    labelreps.appendChild(reps);
 
+    var td = document.createElement('td');
     var deleteBtn = document.createElement('button');
     var localcount = count;
     deleteBtn.addEventListener('click', function(){ deleteEx(localcount); });
     deleteBtn.textContent = 'Delete';
+    td.appendChild(deleteBtn);
 
-    li.appendChild(selecta);
-    li.appendChild(labelsets);
-    li.appendChild(sets);
-    li.appendChild(labelreps);
-    li.appendChild(reps);
-    li.appendChild(deleteBtn);
-    li.setAttribute('id', count)
-    ul.appendChild(li);
+    tr.appendChild(th);
+    tr.appendChild(labelsets);
+    tr.appendChild(labelreps);
+    tr.appendChild(td);
+    tr.setAttribute('id', count);
+    tr.setAttribute("class","exercise");
+    ul.appendChild(tr);
     count++;
 }
 
@@ -111,20 +112,20 @@ function addRot()
         setTimeout(function(){ nametoast.className = nametoast.className.replace("show", ""); }, 3000);
         return;
     }
-    var lis = ul.getElementsByTagName("li");
-    if(lis.length == 0)
+    var trs = ul.getElementsByClassName("exercise");
+    if(trs.length == 0)
     {
         extoast.className = "show";
         setTimeout(function(){ extoast.className = extoast.className.replace("show", ""); }, 3000);
         return;
     }
     var rot = [];
-    for(var a = 0; a < lis.length; a++)
+    for(var a = 0; a < trs.length; a++)
     {
         var ex = [];
-        ex.push(document.getElementById('ex' + lis[a].id).value);
-        ex.push(document.getElementById('sets' + lis[a].id).value);
-        ex.push(document.getElementById('reps' + lis[a].id).value);
+        ex.push(document.getElementById('ex' + trs[a].id).value);
+        ex.push(document.getElementById('sets' + trs[a].id).value);
+        ex.push(document.getElementById('reps' + trs[a].id).value);
         rot.push(ex);
     }
     if(localStorage.hasOwnProperty("routines"))

@@ -26,7 +26,7 @@ slider.noUiSlider.on('update.one', function () {
 
 function apply()
 {
-    ElmStats.innerHTML = "";
+    ElmStats.innerHTML = "<tr><th>Date</th><th>Routine Name</th><th>Exercises Done</th><th>Time Spent</th><th>Action</th></tr>";
 
     var s = Object.entries(stats);
     var val = slider.noUiSlider.get();
@@ -42,18 +42,20 @@ function apply()
         var exs = value[1];
         var time = value[2];
 
-        var li = document.createElement("li");
-        li.setAttribute('class', 'st');
+        var tr = document.createElement("tr");
+        tr.setAttribute('class', 'st');
 
-        var info = document.createElement('label');
-        info.textContent = key + "   ";
+        var info = document.createElement('th');
+        info.textContent = key;
         info.style.color = 'rgb(211, 211, 67)';
+        info.setAttribute('class', 'st');
 
-        var nm = document.createElement('label');
-        nm.textContent = rotname + "   ";
+        var nm = document.createElement('th');
+        nm.textContent = rotname;
         nm.style.color = 'rgb(62, 168, 168)';
+        nm.setAttribute('class', 'st');
 
-        var tm = document.createElement('label');
+        var tm = document.createElement('th');
         var hours = Math.floor(time/3600);
         var minutes = Math.floor(time/60)-(hours*60);
         var seconds = time%60;
@@ -64,8 +66,10 @@ function apply()
         if(minutes < 10)
             minutes = '0' + minutes;
         tm.textContent = hours + ":" + minutes + ":" + seconds;
+        tm.setAttribute('class', 'st');
 
-        var ex = document.createElement('label');
+        var ex = document.createElement('th');
+        ex.setAttribute('class', 'st');
         ex.textContent = "|   "
         for(var a = 0; a < exs.length; a++)
         {
@@ -75,19 +79,22 @@ function apply()
             else 
                 reps[exs[a][0]] = exs[a][1];
         }
-        ex.style.color = 'rgb(53, 156, 53)';
+        ex.style.color = 'rgb(77, 223, 77)';
 
         var delBtn = document.createElement("button");
         delBtn.textContent = "Delete";
         delBtn.addEventListener('click', function(e){ e.stopPropagation(); delSt(key); } );
+        delBtn.style = "width:100%; height:100%;"
+        var but = document.createElement('td');
+        but.setAttribute('class', 'st');
+        but.appendChild(delBtn);
 
-        li.appendChild(info);
-        li.appendChild(nm);
-        li.appendChild(tm);
-        li.appendChild(document.createElement('br'));
-        li.appendChild(ex);
-        li.appendChild(delBtn);
-        ElmStats.appendChild(li);
+        tr.appendChild(info);
+        tr.appendChild(nm);
+        tr.appendChild(ex);
+        tr.appendChild(tm);
+        tr.appendChild(but);
+        ElmStats.appendChild(tr);
         alltime += time;
     }
     var hours = Math.floor(alltime/3600);

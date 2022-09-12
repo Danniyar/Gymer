@@ -17,6 +17,7 @@
         <li class="navli"> <a href = "./pbmode.html">Personal Best Mode</a> </li>
         <li class="navli"> <a href = "./stats.html">Stats</a> </li>
     </ul>
+    <h2>See Your Finished Routines And Their Details!</h2>
     <br>
     <label id="period">Time Period: - </label><br>
     <br>
@@ -26,11 +27,17 @@
     <br>
     <label id="allTime"></label>
     <br>
-    <label id="allReps" style="color:rgb(53, 156, 53);">Overall Reps: | |</label>
+    <label id="allReps" style="color:rgb(77, 223, 77);">Overall Reps: | |</label>
     <br>
-    <ul id="stats">
-        
-    </ul>
+    <table style="width:75%" id="stats">
+        <tr>
+          <th>Date</th>
+          <th>Routine Name</th>
+          <th>Exercises Done</th>
+          <th>Time Spent</th>
+          <th>Action</th>
+        </tr>
+      </table>
     <br>
     <button onclick="reset()">Reset Stats</button><br>
 </body>

@@ -17,6 +17,7 @@
         <canvas class="output_canvas" onclick="recPress()"></canvas>
     </div>
     <div class="bodyparts">
+        <h2>Select Joints That You Want To Record!</h2>
         <img src="./img/pose_tracking_full_body_landmarks.png">
         <button class = "joint_btn" id="right_hip" style="bottom: 45% ! important; left: 57% ! important;">+</button>
         <button class = "joint_btn" id="left_hip" style="bottom: 45% ! important; left: 37% ! important;">+</button>
@@ -30,7 +31,7 @@
     <div class = "options">
         <div class="video-options">
             <select name="" id="" class="custom-select">
-                <option value="">Select camera</option>
+                <option value="">Select Camera</option>
             </select>
         </div>
         <label for="delay">Record Delay:</label>
@@ -40,11 +41,11 @@
         <button id="recBtn" onclick="recPress()">Record</button><br><br>
     </div>
     <br>
-    <label for="exname">Exercise name:</label>
+    <label for="exname">Exercise Name:</label>
     <input type="text" id="exname" name="exname"><br><br>
     <button id="addBtn" onclick="addRec()">Add</button>
-    <div id="namesnackbar">Enter exercise name</div>
-    <div id="datasnackbar">Record exercise</div>
+    <div id="namesnackbar">Enter Exercise Name</div>
+    <div id="datasnackbar">Record Exercise</div>
 </body>
 </html>
 <script src="./javascript/record.js" defer></script>

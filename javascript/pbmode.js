@@ -11,20 +11,31 @@ else
     var records = {};
 
 for(const [key, value] of Object.entries(exercises)) {
-    var li = document.createElement("li");
-    li.setAttribute('class', 'ex');
-    li.addEventListener('click', function(){ window.location.href='./playExercise.html?ex=' + key; } );
+    var tr = document.createElement("tr");
+    var th = document.createElement("th");
+    th.setAttribute('class', 'ex');
+    var button = document.createElement("button");
+    button.textContent = "Start";
+    button.addEventListener('click', function(){ window.location.href='./playExercise.html?ex=' + key; } );
+    button.style = "width:100%; height:100%;"
     var record = '0';
     if(records.hasOwnProperty(key))
         record = records[key];
-    li.style.color = 'rgb(62, 168, 168)';
-    li.textContent = key;
+    th.style.color = 'rgb(62, 168, 168)';
+    th.textContent = key;
 
-    var rec = document.createElement('label');
-    rec.textContent = " Current Record: " + record;
+    var rec = document.createElement('th');
+    rec.textContent = record;
     rec.style.color = 'rgb(211, 211, 67)';
+    rec.setAttribute('class', 'ex');
 
-    li.appendChild(rec);
+    var but = document.createElement('td');
+    but.setAttribute('class','ex');
+    but.appendChild(button);
 
-    ex.appendChild(li);
+    tr.appendChild(th);
+    tr.appendChild(rec);
+    tr.appendChild(but);
+
+    ex.appendChild(tr);
 }
