@@ -1,6 +1,6 @@
 * {
   background-color: rgb(34, 37, 46);
-  font-size: 1vw;
+  font-size: 100%;
 }
 
 #exercs {
@@ -44,7 +44,6 @@ label {
   color:white;
   background-color: transparent;
   font-weight: 900;
-  font-size: 125%;
 }
 button {
   background-color: rgb(163, 64, 64);;

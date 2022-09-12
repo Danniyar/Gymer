@@ -1,6 +1,6 @@
 * {
     background-color: rgb(34, 37, 46);
-    font-size: 1vw;
+    font-size: 100%;
 }
 
 #stats {
@@ -20,20 +20,17 @@ h2 {
     padding: 14px 30px;
     font-weight: 900;
     transition: 0.25s;
-    font-size: 1vw;
 }
 .st:hover {
     background-color: rgb(0, 92, 167);
 }
 tr {
     color:white;
-    font-size: 1vw;
 }
 label {
     color:white;
     background-color: transparent;
     font-weight: 900;
-    font-size: 1vw;
 }
 button {
     background-color: rgb(163, 64, 64);
