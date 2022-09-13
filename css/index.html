@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymer</title>
+    <link href="./css/index.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="formPopup" id="popupForm">
+        <form class="formContainer">
+            <button type="button" class="btn cancel" onclick="closeform()">X</button>
+            <h2 style="color:rgb(255, 255, 255); background-color: rgb(122, 122, 122);"> 1. Go to Exercises, and record reps of your exercises.</h2>
+            <h2 style="color:rgb(255, 255, 255); background-color: rgb(163, 64, 64);"> 2. Go to Routines, click on Edit Routines, and then Add Routine. </h2>
+            <h2 style="color:rgb(255, 255, 255); background-color: rgb(62, 168, 168);"> 3. Add exercises with sets and reps, name your routine and add it. </h2>
+            <h2 style="color:rgb(255, 255, 255); background-color: rgb(211, 211, 67);"> 4. Go back to Routines, and select your routine in days of the week. </h2>
+            <h2 style="color:rgb(255, 255, 255); background-color: rgb(53, 156, 53);"> 5. Start your routine. </h2>
+        </form>
+    </div>
+    <ul class="navbar">
+        <li class="navli"> <a href = "./index.html">Home</a> </li>
+        <li class="navli"> <a href = "./routines.html">Routines</a> </li>
+        <li class="navli"> <a href = "./exercises.html">Exercises</a> </li>
+        <li class="navli"> <a href = "./pbmode.html">Personal Best Mode</a> </li>
+        <li class="navli"> <a href = "./stats.html">Stats</a> </li>
+    </ul>
+    <h2>Record Your Exercises, Count Your Reps With Ease, Keep Track Of Your Records And See Your Statistics!</h2>
+    <button onclick="openform()" id="tutorial">How To Use</button>
+    <br><br>
+    <label id="import">
+        <input type="file" id="file" accept=".json">
+        Import
+    </label><br><br>
+    <button onclick="download()" id="export">Export</button>
+    <br><br>
+</body>
+</html>
+<script src="./javascript/index.js" defer></script>

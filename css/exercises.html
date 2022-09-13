@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymer</title>
+    <link href="./css/exercises.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <ul class="navbar">
+        <li class="navli"> <a href = "./index.html">Home</a> </li>
+        <li class="navli"> <a href = "./routines.html">Routines</a> </li>
+        <li class="navli"> <a href = "./exercises.html">Exercises</a> </li>
+        <li class="navli"> <a href = "./pbmode.html">Personal Best Mode</a> </li>
+        <li class="navli"> <a href = "./stats.html">Stats</a> </li>
+    </ul>
+    <h2>Record Your Exercises!</h2>
+    <button id="addEx" onclick="window.location.href='./addExercise.html'">Add Exercise</button>
+    <br><br>
+    <div id="exercises_wrapper">
+        <table id="exercises" style="width:50%">
+        <tr>
+            <th>Exercise</th>
+            <th>Count Joints Separate</th>
+            <th>Action</th>
+        </tr>
+        </table>
+    </div>
+</body>
+</html>
+<script src="./javascript/exercises.js"></script>

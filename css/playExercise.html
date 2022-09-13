@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymer</title>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils_3d/control_utils_3d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+    <link href="./css/playExercise.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="formPopup" id="popupForm">
+        <form class="formContainer">
+            <h2>Congratulations!</h2>
+            <h2 id="record"></h2>
+            <button type="button" class="btn cancel" onclick="closeTheForm()">Finish</button>
+        </form>
+    </div>
+    <div class="exdesc">
+        <label for="exercise" class="info" style="color:rgb(163, 64, 64); background-color: transparent;">Exercise: </label>
+        <i class="info" id="exercise" style="color:rgb(163, 64, 64); background-color: transparent;">asd</i>
+        <br>
+        <label for="reps" class="info" style="color:rgb(53, 156, 53); background-color: transparent;">Reps: </label>
+        <i class="info" id="reps" style="color:rgb(53, 156, 53); background-color: transparent;">0</i>
+    </div>
+    <div class="container">
+        <video class="input_video" autoplay muted playsinline></video>
+        <canvas class="output_canvas" onclick="startPress()"></canvas>
+    </div>
+    <div class = "options">
+        <div class="video-options">
+            <select name="" id="" class="custom-select">
+                <option value="">Select Camera</option>
+            </select>
+        </div>
+        <label for="delay">Start Delay:</label>
+        <input type="number" id="delay" name="delay" value="3" min="1" max="10" step="1" oninput="validity.valid||(value='');"><br>
+        <button id="pauseBtn" onclick="startPress()">Start</button><br><br>
+    </div>
+    <button id="finishBtn" onclick="finishPress()">Finish</button><br><br>
+</body>
+</html>
+<script src="./javascript/playExercise.js" defer></script>
