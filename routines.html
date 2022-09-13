@@ -16,7 +16,8 @@
         <li class="navli"> <a href = "./stats.html">Stats</a> </li>
     </ul>
     <h2>Select Preferred Routine For Each Day Of The Week And Do Them!</h2>
-    <table style="width:60%" id="routines">
+    <div id="routines_wrapper">
+        <table style="width:60%" id="routines">
         <tr>
             <th>Day Of The Week</th>
             <th>Routine Name</th>
@@ -57,7 +58,8 @@
             <td class="ex"><select name="sunday" onchange="saveRoutine(this)"></select></td>
             <td class="ex"><button style="width:100%" id="sunday">Start</button></td>
         </tr>
-    </table>
+        </table>
+    </div>
     <br>
     <button onclick="window.location.href='./editRoutines.html'" style="background-color: rgb(0, 92, 167);">Edit Routines</button>
 </body>
