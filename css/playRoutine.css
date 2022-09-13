@@ -88,6 +88,7 @@ video {
     transform: translate(-50%, 5%);
     border: 3px solid #999999;
     z-index: 15;
+    font-size: 150%;
   }
   .formContainer {
     max-width: 300px;

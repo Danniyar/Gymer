@@ -10,6 +10,7 @@ label {
 h2 {
   color:white;
   font-weight: 900;
+  font-size: 200%;
 }
 button {
     background-color: rgb(40, 44, 54);
@@ -62,6 +63,7 @@ button:hover {
     transform: translate(-50%, 5%);
     border: 3px solid #999999;
     z-index: 15;
+    font-size: 150%;
   }
   .formContainer {
     max-width: 300px;

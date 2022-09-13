@@ -6,6 +6,10 @@ label {
   color:white;
   background-color: transparent;
   font-weight: 900;
+  text-align: right;
+  clear: both;
+  float:left;
+  margin-right:15px;
 }
 button {
   background-color: rgb(163, 64, 64);
@@ -56,6 +60,7 @@ img {
 h2 {
   color:white;
   font-weight: 900;
+  font-size: 200%;
 }
 .bodyparts {
     position: relative;
