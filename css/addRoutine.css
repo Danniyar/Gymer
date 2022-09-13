@@ -1,15 +1,27 @@
 * {
   background-color: rgb(34, 37, 46);
-  font-size: 100%;
+  font-size: 102%;
 }
 
 #exercs {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   background-color: rgb(255, 255, 255);
-  font-size: 125%;
+  transform:rotateX(180deg);
+  -moz-transform:rotateX(180deg); /* Mozilla */
+  -webkit-transform:rotateX(180deg); /* Safari and Chrome */
+  -ms-transform:rotateX(180deg); /* IE 9+ */
+  -o-transform:rotateX(180deg); /* Opera */
+}
+#exercs_wrapper {
+  display: block;
+  overflow-x: auto;
+  transform:rotateX(180deg);
+  -moz-transform:rotateX(180deg); /* Mozilla */
+  -webkit-transform:rotateX(180deg); /* Safari and Chrome */
+  -ms-transform:rotateX(180deg); /* IE 9+ */
+  -o-transform:rotateX(180deg); /* Opera */
 }
 select {
   background-color: rgb(37, 37, 37);
