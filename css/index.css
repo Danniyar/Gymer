@@ -12,6 +12,11 @@ h2 {
   font-weight: 900;
   font-size: 200%;
 }
+h1 {
+  color:white;
+  font-weight: 900;
+  font-size: 200%;
+}
 button {
     background-color: rgb(40, 44, 54);
     color:rgb(255, 255, 255);
