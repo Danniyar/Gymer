@@ -86,6 +86,9 @@ video {
     height: calc((9 / 16) * 100vw);
     max-height: calc(100vh - 169px);
     object-fit: fill;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
 }
 
 #namesnackbar, #datasnackbar {
