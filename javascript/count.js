@@ -56,7 +56,7 @@ function findGetParameter(parameterName) {
 }
 var rotkey = findGetParameter('rot')
 
-if(rotkey in settings['routines'])
+if(settings.hasOwnProperty('routines') && rotkey in settings['routines'])
 {
   delayBtn.value = settings['routines'][rotkey][0];
   resetCheck.checked = settings['routines'][rotkey][1];

@@ -38,7 +38,8 @@ function delRot(key)
     if(localStorage.hasOwnProperty("settings"))
     {
         var settings = JSON.parse(localStorage.settings);
-        delete settings['routines'][key];
+        if(settings.hasOwnProperty('routines') && settings['routines'].hasOwnProperty(key))
+            delete settings['routines'][key];
         localStorage.settings = JSON.stringify(settings);
     }
     delete routines[key];

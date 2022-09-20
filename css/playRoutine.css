@@ -64,6 +64,9 @@ h2 {
     left: 0;
     z-index: 10;
     background-color:rgba(0, 0, 0, 0);
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
 }
 video {
     width: 100%;
