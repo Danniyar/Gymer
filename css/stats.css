@@ -1,11 +1,13 @@
 * {
     background-color: rgb(34, 37, 46);
     font-size: 102%;
+    text-align: center;
 }
 
 #stats {
     list-style-type: none;
-    margin: 0;
+    margin-right: auto;
+    margin-left: auto;
     padding: 0;
     background-color: rgb(255, 255, 255);
     transform:rotateX(180deg);
