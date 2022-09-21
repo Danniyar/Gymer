@@ -165,6 +165,7 @@ function onResults(results) {
       {
         showLandmarks.push(results.poseLandmarks[id[b]]);
         landmarksPosition[id[b]] = showLandmarks.length-1;
+        showLandmarks[landmarksPosition[id[b]]].x = 1-showLandmarks[landmarksPosition[id[b]]].x;
       }
     }
     showConnections.push([landmarksPosition[id[0]], landmarksPosition[id[1]]]);
