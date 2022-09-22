@@ -62,6 +62,11 @@ h2 {
   font-weight: 900;
   font-size: 200%;
 }
+.container {
+  float: left;
+  min-width: 720px;
+  max-width: 60%;
+}
 .bodyparts {
     position: relative;
     width: 50%;
