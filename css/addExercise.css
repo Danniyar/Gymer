@@ -62,10 +62,6 @@ h2 {
   font-weight: 900;
   font-size: 200%;
 }
-.container {
-  float: left;
-  max-width: 1080px;
-}
 .bodyparts {
     position: relative;
     width: 50%;
@@ -81,8 +77,8 @@ h2 {
     background-color: rgb(163, 64, 64);
 }
 .options {
-    position: relative;
-    float: right;
+  position: relative;
+  float: left;
 }
 video {
     width: 100%;
