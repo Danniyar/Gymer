@@ -319,8 +319,6 @@ const getCameraSelection = async () => {
     return `<option value="${videoDevice.deviceId}">${videoDevice.label}</option>`;
   });
   cameraOptions.innerHTML = options.join('');
-  constraints['deviceId'] = { exact: cameraOptions.value };
-  start(constraints);
 };
 function cameraSelect()
 {
@@ -360,6 +358,7 @@ async function update() {
   requestAnimationFrame(update);
 }
 start(constraints);
+getCameraSelection();
 
 canvasElement.width = videoElement.offsetWidth;
 canvasElement.height = videoElement.offsetHeight;
