@@ -359,7 +359,7 @@ async function update() {
     await pose.send({image: videoElement});
   requestAnimationFrame(update);
 }
-getCameraSelection();
+start(constraints);
 
 canvasElement.width = videoElement.offsetWidth;
 canvasElement.height = videoElement.offsetHeight;
