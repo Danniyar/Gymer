@@ -113,7 +113,7 @@ function nextEx()
       {
         ids.push(exercises[item[0]][a][0]);
         kd.push(false);
-        var diff = Math.abs(exercises[item[0]][a][1]-exercises[item[0]][a][2])/2;
+        var diff = Math.abs(exercises[item[0]][a][1]-exercises[item[0]][a][2])/2.5;
         var firstAngle = exercises[item[0]][a][3];
         if(Math.abs(exercises[item[0]][a][1]-firstAngle) > Math.abs(exercises[item[0]][a][2]-firstAngle))
         {
