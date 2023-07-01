@@ -1,3 +1,17 @@
+var storage = {}
+if(localStorage.hasOwnProperty('records'))
+  storage.records = localStorage.records;
+if(localStorage.hasOwnProperty('routines'))
+  storage.routines = localStorage.routines;
+if(localStorage.hasOwnProperty('exercises'))
+  storage.exercises = localStorage.exercises;
+if(localStorage.hasOwnProperty('stats'))
+  storage.stats = localStorage.stats;
+if(localStorage.hasOwnProperty('settings'))
+  storage.settings = localStorage.settings;
+if(localStorage.hasOwnProperty('dailyRoutines'))
+  storage.dailyRoutines = localStorage.dailyRoutines;
+
 document.getElementById("import").onchange = function(event) {
     event.preventDefault();
 
@@ -27,8 +41,8 @@ const download = () => (
     Object.assign(document.createElement("a"), {
       href: `data:application/JSON, ${encodeURIComponent(
         JSON.stringify(
-          Object.keys(localStorage).reduce(
-            (obj, k) => ({ ...obj, [k]: JSON.parse(localStorage.getItem(k)) }),
+          Object.keys(storage).reduce(
+            (obj, k) => ({ ...obj, [k]: JSON.parse(storage[k]) }),
             {}
           ),
           null,
